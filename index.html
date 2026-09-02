@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>宜春国控 · 余浩 电子名片</title>
 
-    <!-- ===== Open Graph 标签（微信/社交分享卡片） ===== -->
+    <!-- ===== Open Graph 标签（若在GitHub页面分享，仅能显示图一效果） ===== -->
     <meta property="og:title" content="宜春国控·余浩 电子名片" />
     <meta property="og:description" content="向你推荐了余浩的名片" />
-    <!-- 图片地址已换为最新的图床链接 (800x420, 比例≈1.9:1) -->
     <meta property="og:image" content="https://s3.bmp.ovh/2026/09/02/Ie16LiLB.webp" />
-    <meta property="og:image:width" content="800" />
-    <meta property="og:image:height" content="420" />
     <meta property="og:url" content="https://sss222255555.github.io/card/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="宜春国控" />
@@ -21,7 +18,6 @@
     <link rel="image_src" href="https://s3.bmp.ovh/2026/09/02/Ie16LiLB.webp" />
 
     <style>
-        /* ===== 基础重置 ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: "楷体","KaiTi",serif; background: #e8ecf2; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
         .card { max-width: 440px; width: 100%; border-radius: 24px; overflow: hidden; box-shadow: 0 12px 36px rgba(0,0,0,0.12); background: transparent; }
@@ -88,6 +84,14 @@
         .hidden-share-image { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { transform: translateY(30px) scale(0.96); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+
+        /* ===== 二维码弹窗专用样式 ===== */
+        #qrModalOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); z-index: 10000; justify-content: center; align-items: center; padding: 24px; }
+        #qrModalOverlay.active { display: flex; }
+        #qrModalOverlay .share-modal { text-align: center; }
+        #qrcode { display: flex; justify-content: center; margin: 20px 0; }
+        #qrcode img { display: block; }
+        .qr-tip { font-size: 12px; color: #888; margin-top: -10px; margin-bottom: 10px; }
 
         /* ===== 响应式 ===== */
         @media (max-width: 480px) {
@@ -228,6 +232,21 @@
         </div>
     </div>
 
+    <!-- 新增：二维码预览模态框 -->
+    <div class="share-modal-overlay" id="qrModalOverlay">
+        <div class="share-modal">
+            <button class="share-modal-close" id="qrModalClose">✕</button>
+            <div class="share-modal-title">📱 扫码访问名片</div>
+            <div id="qrcode"></div>
+            <p class="qr-tip">长按或扫描二维码访问页面</p>
+        </div>
+    </div>
+
+    <!-- 引入 QRCode.js 库 -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <!-- 引入微信 JSSDK -->
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+
     <script>
         (function() {
             'use strict';
@@ -235,7 +254,6 @@
             var PAGE_URL = window.location.href;
             var SHARE_TITLE = '宜春国控·余浩 电子名片';
             var SHARE_DESC = '向你推荐了余浩的名片';
-            // 图片地址已换为最新的图床链接
             var SHARE_IMG = 'https://s3.bmp.ovh/2026/09/02/Ie16LiLB.webp';
 
             // DOM 引用
@@ -251,6 +269,12 @@
             var modalCopyLinkBtn = document.getElementById('modalCopyLinkBtn');
             var modalShareBtn = document.getElementById('modalShareBtn');
 
+            // 新增二维码弹窗 DOM
+            var qrModalOverlay = document.getElementById('qrModalOverlay');
+            var qrModalClose = document.getElementById('qrModalClose');
+            var qrCodeContainer = document.getElementById('qrcode');
+
+            // 通用提示函数
             function showToast(msg) {
                 var existing = document.querySelector('.toast-tip');
                 if (existing) existing.remove();
@@ -261,6 +285,7 @@
                 setTimeout(function() { toast.style.opacity = '0'; setTimeout(function() { toast.remove(); }, 300); }, 2000);
             }
 
+            // 复制函数
             function copyText(text, successMsg) {
                 if (navigator.clipboard && navigator.clipboard.writeText) {
                     navigator.clipboard.writeText(text).then(function() { showToast(successMsg || '✅ 已复制'); }).catch(function() { fallbackCopy(text, successMsg); });
@@ -283,6 +308,7 @@
                 document.body.removeChild(textarea);
             }
 
+            // 获取联系信息
             function getContactInfo() {
                 var name = document.querySelector('.info-name')?.textContent.trim() || '未知';
                 var title = document.querySelector('.info-title')?.textContent.trim() || '';
@@ -294,6 +320,7 @@
                 return { name, title, dept, phone, email, company, addr };
             }
 
+            // 绑定按钮事件
             if (websiteLink) websiteLink.addEventListener('click', function(e) { e.preventDefault(); copyText(WEBSITE_URL, '✅ 已复制官网链接'); });
             if (copyTip) copyTip.addEventListener('click', function(e) { e.preventDefault(); copyText(WEBSITE_URL, '✅ 已复制官网链接'); });
             if (copyBtn) copyBtn.addEventListener('click', function() {
@@ -330,13 +357,49 @@
                     copyText('姓名：'+info.name+'\n电话：'+info.phone+'\n邮箱：'+info.email+'\n公司：'+info.company, '⚠️ 已复制联系人信息，请手动保存');
                 }
             }
-            if (qrBtn) qrBtn.addEventListener('click', function() { showToast('📱 扫码关注宜春国控'); });
 
+            // ==================== 新增二维码功能 ====================
+            if (qrBtn) qrBtn.addEventListener('click', function() {
+                // 清空原有二维码（防止多次点击重复生成）
+                qrCodeContainer.innerHTML = '';
+                
+                // 生成二维码
+                // 注意：这里生成的是当前的GitHub链接，若想生成官网链接请手动替换此处
+                new QRCode(qrCodeContainer, {
+                    text: window.location.href, 
+                    width: 220,
+                    height: 220,
+                    colorDark : "#000000",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H
+                });
+                
+                // 显示弹窗
+                qrModalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            if (qrModalClose) qrModalClose.addEventListener('click', function() {
+                qrModalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            // 点击遮罩层关闭
+            qrModalOverlay.addEventListener('click', function(e) {
+                if (e.target === qrModalOverlay) {
+                    qrModalOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            // =======================================================
+
+            // 原有分享弹窗逻辑
             function openShareModal() { modalOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
             function closeShareModal() { modalOverlay.classList.remove('active'); document.body.style.overflow = ''; }
             if (modalOverlay) modalOverlay.addEventListener('click', function(e) { if (e.target === modalOverlay) closeShareModal(); });
             if (modalClose) modalClose.addEventListener('click', closeShareModal);
             if (modalCopyLinkBtn) modalCopyLinkBtn.addEventListener('click', function() { copyText(PAGE_URL, '✅ 链接已复制，可粘贴分享'); closeShareModal(); });
+            
+            // 原生分享（长按右上角）
             if (modalShareBtn) modalShareBtn.addEventListener('click', function() {
                 closeShareModal();
                 if (navigator.share) {
@@ -348,10 +411,56 @@
                     navigator.share({ title: SHARE_TITLE, text: SHARE_DESC, url: PAGE_URL }).catch(function(err) { if (err.name !== 'AbortError') openShareModal(); });
                 } else { openShareModal(); }
             });
-            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeShareModal(); });
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeShareModal(); qrModalOverlay.classList.remove('active'); } });
+
+            // ==================== 微信JS-SDK分享功能（实现图二） ====================
+            // 注意：此功能必须部署到官网（已备案），并配置好后端签名接口才能使用！
+            function initWeChatShare() {
+                // 1. 获取当前页面去掉 # 后的完整链接
+                var currentUrl = window.location.href.split('#')[0];
+                
+                // 2. 请求自己的后端签名接口（后端负责缓存token并生成signature）
+                // 请将 'YOUR_BACKEND_API' 替换为你真实的签名接口地址
+                fetch('/api/get-wechat-signature?url=' + encodeURIComponent(currentUrl))
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.code !== 200) return;
+                        wx.config({
+                            debug: false, 
+                            appId: data.appId,         // 公众号appId
+                            timestamp: data.timestamp, // 签名时间戳
+                            nonceStr: data.nonceStr,   // 签名随机串
+                            signature: data.signature, // 签名
+                            jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData']
+                        });
+                        
+                        wx.ready(function() {
+                            var shareData = {
+                                title: '宜春国控·余浩 电子名片',
+                                desc: '向你推荐了余浩的名片',
+                                link: currentUrl, // 分享的链接（必须是当前官网链接）
+                                imgUrl: SHARE_IMG, // 分享图片
+                                success: function() { console.log('分享设置成功'); },
+                                cancel: function() { console.log('用户取消分享'); }
+                            };
+                            wx.updateAppMessageShareData(shareData); // 分享给朋友（图二效果）
+                            wx.updateTimelineShareData(shareData);  // 分享到朋友圈
+                        });
+                        
+                        wx.error(function(res) {
+                            console.error('微信SDK配置失败：', res.errMsg);
+                        });
+                    })
+                    .catch(err => console.error('无法获取微信签名配置：', err));
+            }
+            
+            // 如果是部署在官网上，请取消注释下面这行代码来启用微信分享
+            // initWeChatShare();
+            // =====================================================================
+
+            // 预加载图片
             var preloadImg = new Image();
             preloadImg.src = SHARE_IMG;
-            console.log('✅ 分享内容已更新：标题="宜春国控·余浩 电子名片"，描述="向你推荐了余浩的名片"');
         })();
     </script>
 </body>
