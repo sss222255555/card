@@ -8,17 +8,17 @@
     <!-- ===== Open Graph 标签（微信/社交分享卡片） ===== -->
     <meta property="og:title" content="宜春国控·余浩 电子名片" />
     <meta property="og:description" content="向你推荐了余浩的名片" />
-    <meta property="og:image" content="https://sss222255555.github.io/yichun-card/img/share-big.png" />
-    <!-- 显式声明图片宽高，帮助微信识别为大图 -->
+    <!-- 已改为新仓库 card 的图片路径 -->
+    <meta property="og:image" content="https://sss222255555.github.io/card/img/share-big.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:url" content="https://sss222255555.github.io/yichun-card/" />
+    <meta property="og:url" content="https://sss222255555.github.io/card/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="宜春国控" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- ===== 微信分享卡片备用图片 ===== -->
-    <link rel="image_src" href="https://sss222255555.github.io/yichun-card/img/share-big.png" />
+    <!-- 备用图片链接（同样改为新路径） -->
+    <link rel="image_src" href="https://sss222255555.github.io/card/img/share-big.png" />
 
     <style>
         /* ===== 基础重置 ===== */
@@ -158,7 +158,7 @@
 <body>
     <!-- 隐藏图片帮助微信爬虫 -->
     <div class="hidden-share-image">
-        <img src="https://sss222255555.github.io/yichun-card/img/share-big.png" alt="分享预览图" />
+        <img src="https://sss222255555.github.io/card/img/share-big.png" alt="分享预览图" />
     </div>
 
     <div class="card">
@@ -235,7 +235,8 @@
             var PAGE_URL = window.location.href;
             var SHARE_TITLE = '宜春国控·余浩 电子名片';
             var SHARE_DESC = '向你推荐了余浩的名片';
-            var SHARE_IMG = 'https://sss222255555.github.io/yichun-card/img/share-big.png';
+            // 图片地址改为当前仓库路径
+            var SHARE_IMG = 'https://sss222255555.github.io/card/img/share-big.png';
 
             // DOM 引用
             var websiteLink = document.getElementById('websiteLink');
