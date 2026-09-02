@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>宜春国控 · 余浩 电子名片</title>
 
-    <!-- ===== Open Graph 标签（若在GitHub页面分享，仅能显示图一效果） ===== -->
+    <!-- ===== Open Graph 标签（普通网页分享） ===== -->
     <meta property="og:title" content="宜春国控·余浩 电子名片" />
     <meta property="og:description" content="向你推荐了余浩的名片" />
     <meta property="og:image" content="https://s3.bmp.ovh/2026/09/02/Ie16LiLB.webp" />
@@ -13,8 +13,6 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="宜春国控" />
     <meta name="twitter:card" content="summary_large_image" />
-
-    <!-- 备用图片链接 -->
     <link rel="image_src" href="https://s3.bmp.ovh/2026/09/02/Ie16LiLB.webp" />
 
     <style>
@@ -85,15 +83,15 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { transform: translateY(30px) scale(0.96); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
 
-        /* ===== 二维码弹窗专用样式 ===== */
+        /* 二维码弹窗专用样式 */
         #qrModalOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); z-index: 10000; justify-content: center; align-items: center; padding: 24px; }
         #qrModalOverlay.active { display: flex; }
         #qrModalOverlay .share-modal { text-align: center; }
         #qrcode { display: flex; justify-content: center; margin: 20px 0; }
-        #qrcode img { display: block; }
+        #qrcode img { display: block; pointer-events: auto; -webkit-user-select: none; user-select: none; }
         .qr-tip { font-size: 12px; color: #888; margin-top: -10px; margin-bottom: 10px; }
 
-        /* ===== 响应式 ===== */
+        /* 响应式 */
         @media (max-width: 480px) {
             .bg-image { min-height: 80vh; padding-bottom: 20px; }
             .bg-image::after { height: 100px; }
@@ -244,7 +242,7 @@
 
     <!-- 引入 QRCode.js 库 -->
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    <!-- 引入微信 JSSDK -->
+    <!-- 引入微信 JSSDK（若未部署，不影响二维码功能） -->
     <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
 
     <script>
@@ -358,13 +356,12 @@
                 }
             }
 
-            // ==================== 新增二维码功能 ====================
+            // ==================== 新增二维码功能（支持长按识别与保存） ====================
             if (qrBtn) qrBtn.addEventListener('click', function() {
                 // 清空原有二维码（防止多次点击重复生成）
                 qrCodeContainer.innerHTML = '';
                 
-                // 生成二维码
-                // 注意：这里生成的是当前的GitHub链接，若想生成官网链接请手动替换此处
+                // 生成二维码（先临时生成在 canvas 中）
                 new QRCode(qrCodeContainer, {
                     text: window.location.href, 
                     width: 220,
@@ -373,6 +370,15 @@
                     colorLight : "#ffffff",
                     correctLevel : QRCode.CorrectLevel.H
                 });
+                
+                // 关键修复：将 Canvas 转换为 img 标签，微信长按才能识别和保存
+                setTimeout(function() {
+                    var canvas = qrCodeContainer.querySelector('canvas');
+                    if (canvas) {
+                        var imgUrl = canvas.toDataURL("image/png");
+                        qrCodeContainer.innerHTML = '<img src="' + imgUrl + '" style="display:block; width:220px; height:220px; margin:0 auto;" alt="二维码" />';
+                    }
+                }, 100); // 延迟100毫秒确保canvas已经渲染完成
                 
                 // 显示弹窗
                 qrModalOverlay.classList.add('active');
@@ -399,7 +405,7 @@
             if (modalClose) modalClose.addEventListener('click', closeShareModal);
             if (modalCopyLinkBtn) modalCopyLinkBtn.addEventListener('click', function() { copyText(PAGE_URL, '✅ 链接已复制，可粘贴分享'); closeShareModal(); });
             
-            // 原生分享（长按右上角）
+            // 原生分享
             if (modalShareBtn) modalShareBtn.addEventListener('click', function() {
                 closeShareModal();
                 if (navigator.share) {
@@ -415,31 +421,31 @@
 
             // ==================== 微信JS-SDK分享功能（实现图二） ====================
             // 注意：此功能必须部署到官网（已备案），并配置好后端签名接口才能使用！
+            // 请打开下方注释，并替换为你的真实后端签名接口地址
             function initWeChatShare() {
                 // 1. 获取当前页面去掉 # 后的完整链接
                 var currentUrl = window.location.href.split('#')[0];
                 
                 // 2. 请求自己的后端签名接口（后端负责缓存token并生成signature）
-                // 请将 'YOUR_BACKEND_API' 替换为你真实的签名接口地址
                 fetch('/api/get-wechat-signature?url=' + encodeURIComponent(currentUrl))
                     .then(res => res.json())
                     .then(data => {
                         if (data.code !== 200) return;
                         wx.config({
                             debug: false, 
-                            appId: data.appId,         // 公众号appId
-                            timestamp: data.timestamp, // 签名时间戳
-                            nonceStr: data.nonceStr,   // 签名随机串
-                            signature: data.signature, // 签名
+                            appId: data.appId,         
+                            timestamp: data.timestamp, 
+                            nonceStr: data.nonceStr,   
+                            signature: data.signature, 
                             jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData']
                         });
                         
                         wx.ready(function() {
                             var shareData = {
-                                title: '宜春国控·余浩 电子名片',
-                                desc: '向你推荐了余浩的名片',
-                                link: currentUrl, // 分享的链接（必须是当前官网链接）
-                                imgUrl: SHARE_IMG, // 分享图片
+                                title: SHARE_TITLE,
+                                desc: SHARE_DESC,
+                                link: currentUrl, // 分享的链接（必须是官网链接）
+                                imgUrl: SHARE_IMG, 
                                 success: function() { console.log('分享设置成功'); },
                                 cancel: function() { console.log('用户取消分享'); }
                             };
