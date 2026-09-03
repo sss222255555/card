@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>宜春国控 · 余浩 电子名片</title>
 
-    <!-- 关键修改：使用了完整的公网绝对路径 -->
     <meta property="og:title" content="宜春国控·余浩 电子名片" />
     <meta property="og:description" content="向你推荐了余浩的名片" />
     <meta property="og:image" content="https://sss222255555.github.io/card/img/share-big.png" />
@@ -146,7 +145,6 @@
 </head>
 <body>
 
-    <!-- 返回列表按钮（左下角） -->
     <a href="index.html" style="position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: rgba(255,255,255,0.9); padding: 8px 16px; border-radius: 20px; font-size: 14px; color: #0a2e6e; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.5);">‹ 返回列表</a>
 
     <div class="hidden-share-image">
@@ -160,7 +158,6 @@
             </div>
             <div class="info-area" id="infoArea">
                 <div class="info-item info-name">余浩</div>
-                <!-- 职位修改为：综合管理部 / 部长 -->
                 <div class="info-item info-title">综合管理部</div>
                 <div class="info-item info-dept">部长</div>
                 <div class="info-item info-contact">17370565453</div>
@@ -234,8 +231,8 @@
             <button class="share-modal-close" id="qrModalClose">✕</button>
             <div class="share-modal-title">📱 扫码访问名片</div>
             <div id="qrcode"></div>
-            <p class="qr-tip">微信内请长按图片识别或保存</p>
-            <a id="downloadQrBtn" style="display:none; background:#0a2e6e; color:#fff; padding:10px 20px; border-radius:20px; text-decoration:none; font-size:14px;">保存图片</a>
+            <!-- 已删除保存图片按钮 -->
+            <p class="qr-tip">微信内请长按图片识别</p>
         </div>
     </div>
 
@@ -248,7 +245,6 @@
             var PAGE_URL = window.location.href;
             var SHARE_TITLE = '宜春国控·余浩 电子名片';
             var SHARE_DESC = '向你推荐了余浩的名片';
-            // 关键修改：绝对路径
             var SHARE_IMG = 'https://sss222255555.github.io/card/img/share-big.png';
 
             var websiteLink = document.getElementById('websiteLink');
@@ -264,7 +260,6 @@
             var qrModalOverlay = document.getElementById('qrModalOverlay');
             var qrModalClose = document.getElementById('qrModalClose');
             var qrCodeContainer = document.getElementById('qrcode');
-            var downloadQrBtn = document.getElementById('downloadQrBtn');
 
             function showToast(msg) {
                 var existing = document.querySelector('.toast-tip');
@@ -324,7 +319,7 @@
 
             if (qrBtn) qrBtn.addEventListener('click', function() {
                 qrCodeContainer.innerHTML = '';
-                downloadQrBtn.style.display = 'none';
+                
                 new QRCode(qrCodeContainer, {
                     text: window.location.href, 
                     width: 240,
@@ -338,12 +333,9 @@
                     if (canvas) {
                         var imgUrl = canvas.toDataURL("image/png");
                         qrCodeContainer.innerHTML = '<img src="' + imgUrl + '" alt="二维码" />';
-                        var a = document.getElementById('downloadQrBtn');
-                        a.href = imgUrl;
-                        a.download = "名片二维码.png";
-                        a.style.display = 'inline-block';
                     }
                 }, 100); 
+                
                 qrModalOverlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
             });
