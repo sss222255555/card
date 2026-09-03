@@ -4,8 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>宜春国控 · 电子名片集</title>
+    
+    <meta property="og:title" content="宜春国控电子名片集" />
+    <meta property="og:description" content="选择需要查看的名片" />
+    <meta property="og:image" content="https://sss222255555.github.io/card/img/share-big.png" />
+    <meta property="og:url" content="https://sss222255555.github.io/card/" />
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* 背景和余浩页一致 */
         body { 
             font-family: "楷体","KaiTi",serif; 
             background-color: #e8ecf2; 
@@ -21,7 +29,6 @@
             position: relative;
         }
         
-        /* 底部渐变层（和yuhao完全一致） */
         body::after { 
             content: ''; 
             position: fixed; 
@@ -36,31 +43,32 @@
 
         .container { max-width: 440px; width: 100%; position: relative; z-index: 1; }
         
-        /* 头部卡片 */
         .header { background: rgba(255,255,255,0.95); border-radius: 20px; text-align: center; padding: 25px 20px 20px 20px; margin-bottom: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.10); backdrop-filter: blur(4px); }
         .header .logo-box { display: flex; justify-content: center; align-items: center; margin-bottom: 20px; }
         .header .logo-box img { max-width: 220px; max-height: 60px; width: auto; height: auto; object-fit: contain; }
         .header h1 { font-size: 24px; color: #0a2e6e; font-weight: 700; letter-spacing: 2px; padding-bottom: 8px; border-bottom: 1px dashed #e8ecf2; }
         .header p { font-size: 14px; color: #7a8aaa; margin-top: 10px; }
 
-        /* 名片列表 */
         .list-area { display: flex; flex-direction: column; }
         
-        .card-item { background: rgba(255,255,255,0.95); border-radius: 16px; padding: 18px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; align-items: center; cursor: pointer; transition: all 0.2s ease; text-decoration: none; margin-bottom: 30px; backdrop-filter: blur(4px); }
+        /* 重要修改：设置为块级元素，保证微信长按整块能识别链接 */
+        .card-item { display: block; background: rgba(255,255,255,0.95); border-radius: 16px; padding: 18px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); cursor: pointer; transition: all 0.2s ease; text-decoration: none; margin-bottom: 35px; backdrop-filter: blur(4px); position: relative; }
         .card-item:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(10,46,110,0.20); }
         .card-item:last-child { margin-bottom: 0; }
         
-        .card-item .avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #7593AF, #092145); color: #fff; display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; margin-right: 15px; flex-shrink: 0; }
-        .card-item .info { flex: 1; }
+        /* 内部元素模拟为 flex 布局，但不能阻挡长按链接 */
+        .card-item-content { display: flex; align-items: center; pointer-events: none; } 
+        
+        .card-item .avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #7593AF, #092145); color: #fff; display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; margin-right: 15px; flex-shrink: 0; pointer-events: none; }
+        .card-item .info { flex: 1; pointer-events: none; }
         .card-item .info .name { font-size: 18px; font-weight: 600; color: #0a2e6e; margin-bottom: 4px; }
         .card-item .info .job { font-size: 13px; color: #5a6e8a; }
-        .card-item .arrow { font-size: 22px; color: #c8d2e0; margin-left: 10px; }
+        .card-item .arrow { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 22px; color: #c8d2e0; pointer-events: none; }
         
         .footer-tip { text-align: center; font-size: 12px; color: #5a6e8a; padding-top: 30px; }
         
-        /* 小屏幕微调 */
         @media (max-width: 380px) {
-            .card-item { margin-bottom: 20px; }
+            .card-item { margin-bottom: 25px; }
             .header { margin-bottom: 20px; }
             .footer-tip { padding-top: 20px; }
         }
@@ -68,45 +76,51 @@
 </head>
 <body>
     <div class="container">
-        <!-- 头部区域 -->
         <div class="header">
             <div class="logo-box"><img src="img/logo11.png" alt="宜春国控" /></div>
             <h1>宜春国控 · 电子名片</h1>
             <p>请选择您要查看的名片</p>
         </div>
 
-        <!-- 名片列表区域 -->
         <div class="list-area">
             <!-- 名片 1：余浩 -->
             <a href="yuhao.html" class="card-item">
-                <div class="avatar">余</div>
-                <div class="info">
-                    <div class="name">余浩</div>
-                    <div class="job">综合管理部-部长</div>
+                <div class="card-item-content">
+                    <div class="avatar">余</div>
+                    <div class="info">
+                        <div class="name">余浩</div>
+                        <div class="job">综合管理部、部长</div>
+                    </div>
                 </div>
-                <div class="arrow">›</div>
+                <span class="arrow">›</span>
             </a>
 
+            <!-- 名片 2：张三 -->
             <a href="zhangsan.html" class="card-item">
-                <div class="avatar">张</div>
-                <div class="info">
-                    <div class="name">张三</div>
-                    <div class="job">人力资源部部长</div>
+                <div class="card-item-content">
+                    <div class="avatar">张</div>
+                    <div class="info">
+                        <div class="name">张三</div>
+                        <div class="job">人力资源部部长</div>
+                    </div>
                 </div>
-                <div class="arrow">›</div>
+                <span class="arrow">›</span>
             </a>
             
+            <!-- 名片 3：李四 -->
             <a href="lisi.html" class="card-item">
-                <div class="avatar">李</div>
-                <div class="info">
-                    <div class="name">李四</div>
-                    <div class="job">检测中心主任</div>
+                <div class="card-item-content">
+                    <div class="avatar">李</div>
+                    <div class="info">
+                        <div class="name">李四</div>
+                        <div class="job">检测中心主任</div>
+                    </div>
                 </div>
-                <div class="arrow">›</div>
+                <span class="arrow">›</span>
             </a>
         </div>
 
-        <div class="footer-tip">长按名片可分享给微信好友</div>
+        <div class="footer-tip">长按名片可直接分享给微信好友</div>
     </div>
 </body>
 </html>
