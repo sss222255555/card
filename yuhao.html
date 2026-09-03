@@ -9,9 +9,6 @@
     <meta property="og:description" content="向你推荐了余浩的名片" />
     <meta property="og:image" content="https://sss222255555.github.io/card/img/share-big.png" />
     <meta property="og:url" content="https://sss222255555.github.io/card/" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="image_src" href="https://sss222255555.github.io/card/img/share-big.png" />
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,13 +21,11 @@
         .brand-bar { padding: 20px 0 0 0; display: flex; justify-content: center; align-items: center; position: relative; z-index: 2; width: 100%; }
         .brand-icon { width: 100%; max-height: 150px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
         .brand-icon img { width: 100%; height: auto; max-height: 150px; object-fit: contain; display: block; filter: drop-shadow(0 2px 12px rgba(0,0,0,0.25)); }
-        
         .info-area { margin: 55vh 24px 0 24px; padding: 22px 26px 18px 26px; border-radius: 20px; background: #fff; text-align: right; box-shadow: 0 4px 16px rgba(0,0,0,0.12); font-family: "楷体","KaiTi",serif; position: relative; z-index: 2; align-self: stretch; }
         .info-item { margin-bottom: 5px; line-height: 1.4; letter-spacing: 0.5px; color: #000; }
         .info-name { font-size: 38px; font-weight: 700; color: #000; letter-spacing: 2px; margin-bottom: 10px; }
         .info-title, .info-dept, .info-contact, .info-company, .info-address { font-size: 16px; font-weight: 400; color: #000; }
         .info-company { font-weight: 600; }
-        
         .color-fill { width: 100%; background: linear-gradient(to bottom, #A1B8CE 0%, #7593AF 25%, #3b557a 50%, #3b557a 75%, #092145 100%); margin-top: 0; padding-top: 15px; padding-bottom: 20px; border-radius: 0 0 24px 24px; }
         
         .actions { display: flex; gap: 10px; justify-content: center; position: relative; z-index: 2; padding: 0 16px 12px 16px; }
@@ -43,7 +38,6 @@
         .company-logo img { width: 100%; height: auto; max-height: 140px; object-fit: contain; display: block; }
         .company-desc { font-size: 16px; line-height: 2.0; color: #2c3e6b; text-align: justify; letter-spacing: 0.5px; padding: 0 22px; }
         .company-desc .first-line { display: block; text-indent: 2em; }
-        
         .company-website-row { display: flex; align-items: center; justify-content: flex-start; gap: 10px; flex-wrap: wrap; padding: 14px 22px 8px 22px; margin-top: 4px; }
         .company-website-row .footer-website { font-size: 16px; font-weight: 600; color: #0a2e6e; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; text-decoration: none; }
         .company-website-row .footer-website:hover { color: #13408a; }
@@ -55,91 +49,35 @@
         .company-qr-box { width: 80px; height: 80px; background: #fff; border-radius: 12px; padding: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e8ecf2; display: flex; align-items: center; justify-content: center; }
         .company-qr-box img { width: 100%; height: 100%; object-fit: contain; }
         .company-qr-label { font-size: 11px; color: #7a8aaa; margin-top: 4px; letter-spacing: 0.5px; }
-        
         .company-address-row { font-size: 16px; color: #2c3e6b; line-height: 1.8; text-align: left; padding: 0 22px; margin-top: 2px; }
         .company-address-row .label { color: #7a8aaa; font-weight: 400; }
         .company-contact-row { display: flex; align-items: baseline; font-size: 16px; color: #2c3e6b; line-height: 1.8; padding: 0 22px; margin-top: 2px; }
         .company-contact-row .contact-col { flex: 1; text-align: left; }
         .company-contact-row .contact-col .label { color: #7a8aaa; font-weight: 400; }
+
+        /* 海报生成和展示相关样式 */
+        #posterWrap { position: fixed; left: -9999px; top: 0; width: 375px; height: 600px; background: #fff; overflow: hidden; }
+        .poster-bg { width: 100%; height: 100%; background-image: url('img/index_gb.png'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
+        .poster-content { background: rgba(255,255,255,0.95); border-radius: 16px; padding: 30px 20px; text-align: center; width: 85%; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .poster-logo { width: 120px; margin-bottom: 15px; }
+        .poster-name { font-size: 28px; font-weight: 700; color: #0a2e6e; margin-bottom: 5px; }
+        .poster-title { font-size: 14px; color: #5a6e8a; margin-bottom: 15px; }
+        .poster-desc { font-size: 13px; color: #666; margin-bottom: 20px; }
+        #posterQr { width: 120px; height: 120px; margin: 0 auto; border: 2px solid #e8ecf2; padding: 5px; border-radius: 8px; }
+        .poster-tip { font-size: 12px; color: #999; margin-top: 10px; }
+
+        #posterModalOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 99999; justify-content: center; align-items: center; flex-direction: column; padding: 20px; }
+        #posterModalOverlay.active { display: flex; }
+        #posterModalOverlay img { width: 100%; max-width: 360px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        #posterModalOverlay p { color: #fff; font-size: 14px; margin-top: 20px; }
+        #closePosterModal { color: #fff; font-size: 24px; position: absolute; top: 20px; right: 20px; cursor: pointer; }
         
         .toast-tip { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(10,46,110,0.93); color: #fff; padding: 10px 26px; border-radius: 30px; font-size: 14px; font-weight: 500; box-shadow: 0 8px 28px rgba(0,0,0,0.28); z-index: 9999; backdrop-filter: blur(4px); max-width: 90%; text-align: center; transition: opacity 0.25s ease; letter-spacing: 0.3px; border: 1px solid rgba(255,255,255,0.12); font-family: "楷体","KaiTi",serif; }
         
-        .share-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); z-index: 10000; justify-content: center; align-items: center; padding: 24px; animation: fadeIn 0.3s ease; }
-        .share-modal-overlay.active { display: flex; }
-        .share-modal { background: #fff; border-radius: 28px; max-width: 400px; width: 100%; padding: 28px 24px 24px 24px; box-shadow: 0 24px 56px rgba(0,0,0,0.35); animation: slideUp 0.35s ease; position: relative; }
-        .share-modal-title { font-size: 16px; font-weight: 600; color: #1a2a4a; text-align: center; margin-bottom: 18px; letter-spacing: 0.5px; font-family: "楷体","KaiTi",serif; }
-        .share-modal-close { position: absolute; top: 12px; right: 16px; font-size: 24px; color: #8a9bb8; cursor: pointer; background: none; border: none; line-height: 1; }
-        .share-modal-close:hover { color: #1a2a4a; }
-        .share-card-preview { background: #f5f7fa; border-radius: 18px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 20px; border: 1px solid #e8ecf2; }
-        .share-card-preview .preview-img { width: 100%; aspect-ratio: 16/9; background: #d0d8e4; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .share-card-preview .preview-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .share-card-preview .preview-body { padding: 12px 16px 14px 16px; background: #fff; }
-        .share-card-preview .preview-title { font-size: 16px; font-weight: 600; color: #0a2e6e; margin-bottom: 4px; font-family: "楷体","KaiTi",serif; }
-        .share-card-preview .preview-desc { font-size: 13px; color: #5a6e8a; line-height: 1.5; font-family: "楷体","KaiTi",serif; }
-        .share-card-preview .preview-source { font-size: 11px; color: #8a9bb8; margin-top: 6px; font-family: "楷体","KaiTi",serif; }
-        .share-modal-actions { display: flex; gap: 12px; margin-top: 6px; }
-        .share-modal-actions .sm-btn { flex: 1; padding: 10px 0; border-radius: 22px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: "楷体","KaiTi",serif; }
-        .share-modal-actions .sm-btn-primary { background: #0a2e6e; color: #fff; box-shadow: 0 4px 12px rgba(10,46,110,0.25); }
-        .share-modal-actions .sm-btn-primary:hover { background: #13408a; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(10,46,110,0.35); }
-        .share-modal-actions .sm-btn-secondary { background: #eef1f5; color: #1a2a4a; }
-        .share-modal-actions .sm-btn-secondary:hover { background: #e2e7ed; transform: translateY(-1px); }
-        
-        .hidden-share-image { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { transform: translateY(30px) scale(0.96); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
-        
-        #qrModalOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); z-index: 10000; justify-content: center; align-items: center; padding: 24px; }
-        #qrModalOverlay.active { display: flex; }
-        #qrModalOverlay .share-modal { text-align: center; }
-        #qrcode { display: flex; justify-content: center; margin: 20px 0; }
-        #qrcode img { display: block; width: 240px; height: 240px; margin: 0 auto; -webkit-touch-callout: default; pointer-events: auto; }
-        .qr-tip { font-size: 12px; color: #888; margin-top: -10px; margin-bottom: 10px; }
-
         @media (max-width: 480px) {
             .bg-image { min-height: 80vh; padding-bottom: 8px; }
-            .bg-image::after { height: 100px; }
-            .brand-icon { max-height: 120px; }
-            .brand-icon img { max-height: 120px; }
-            .info-area { margin: 50vh 16px 0 16px; padding: 18px 20px 16px 20px; border-radius: 16px; }
-            .info-name { font-size: 32px; }
-            .info-title, .info-dept, .info-contact, .info-company, .info-address { font-size: 15px; }
-            .color-fill { margin-top: 0; padding-top: 10px; padding-bottom: 16px; }
-            .company-area { margin: 0 16px 14px 16px; border-radius: 16px; }
-            .company-logo { padding: 10px 0 6px 0; }
-            .company-logo img { max-height: 110px; }
-            .company-desc { font-size: 15px; line-height: 1.9; padding: 0 18px; }
-            .company-website-row { padding: 12px 18px 6px 18px; }
-            .company-website-row .footer-website { font-size: 14px; }
-            .company-address-row { font-size: 14px; padding: 0 18px; }
-            .company-contact-row { font-size: 14px; padding: 0 18px; }
-            .company-qr-box { width: 68px; height: 68px; padding: 4px; }
-            .company-qr-label { font-size: 10px; }
             .actions { padding: 0 12px 10px 12px; gap: 8px; }
             .actions .btn { font-size: 12px; padding: 9px 0; }
-            .share-modal { padding: 20px 16px 20px 16px; border-radius: 22px; }
-            .share-modal-title { font-size: 15px; }
-        }
-        @media (max-width: 380px) {
-            .bg-image { min-height: 75vh; padding-bottom: 6px; }
-            .bg-image::after { height: 80px; }
-            .brand-icon { max-height: 100px; }
-            .brand-icon img { max-height: 100px; }
-            .info-area { margin: 45vh 12px 0 12px; padding: 16px 16px 14px 16px; border-radius: 14px; }
-            .info-name { font-size: 28px; }
-            .info-title, .info-dept, .info-contact, .info-company, .info-address { font-size: 14px; }
-            .color-fill { margin-top: 0; padding-top: 8px; padding-bottom: 12px; }
-            .company-area { margin: 0 12px 12px 12px; border-radius: 14px; }
-            .company-logo img { max-height: 90px; }
-            .company-desc { font-size: 14px; line-height: 1.8; padding: 0 14px; }
-            .company-website-row { padding: 10px 14px 4px 14px; }
-            .company-website-row .footer-website { font-size: 13px; }
-            .company-address-row { font-size: 13px; padding: 0 14px; }
-            .company-contact-row { font-size: 13px; padding: 0 14px; }
-            .company-qr-box { width: 60px; height: 60px; padding: 4px; }
-            .actions { gap: 6px; }
-            .actions .btn { font-size: 11px; padding: 8px 0; }
-            .share-modal { padding: 16px 12px 16px 12px; border-radius: 18px; }
-            .share-modal-title { font-size: 14px; }
         }
     </style>
 </head>
@@ -147,15 +85,9 @@
 
     <a href="index.html" style="position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: rgba(255,255,255,0.9); padding: 8px 16px; border-radius: 20px; font-size: 14px; color: #0a2e6e; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.5);">‹ 返回列表</a>
 
-    <div class="hidden-share-image">
-        <img src="https://sss222255555.github.io/card/img/share-big.png" alt="分享预览图" />
-    </div>
-
     <div class="card">
         <div class="bg-image">
-            <div class="brand-bar">
-                <div class="brand-icon"><img src="img/logo11.png" alt="Logo" /></div>
-            </div>
+            <div class="brand-bar"><div class="brand-icon"><img src="img/logo11.png" alt="Logo" /></div></div>
             <div class="info-area" id="infoArea">
                 <div class="info-item info-name">余浩</div>
                 <div class="info-item info-title">综合管理部</div>
@@ -167,99 +99,63 @@
             </div>
         </div>
         <div class="color-fill">
-            
             <div class="actions">
                 <button class="btn" id="callBtn"><span class="emoji">📞</span> 拨打电话</button>
                 <button class="btn" id="copyBtn"><span class="emoji">📋</span> 复制信息</button>
             </div>
-
             <div class="actions">
                 <button class="btn" id="qrBtn"><span class="emoji">📱</span> 二维码</button>
-                <button class="btn" id="shareBtn"><span class="emoji">📤</span> 分享</button>
+                <!-- 将原分享按钮改为生成海报按钮 -->
+                <button class="btn" id="posterBtn"><span class="emoji">📤</span> 分享海报</button>
             </div>
+            <!-- 隐藏公司介绍，用于节省空间，也可以替换为海报上的公司信息 -->
+        </div>
+    </div>
 
-            <div class="company-area">
-                <div class="company-logo"><img src="img/logo11.png" alt="宜春国控" /></div>
-                <div class="company-desc">
-                    <span class="first-line">宜春市国有资本控股有限公司成立于2020年5月，是市属现代综合服务型国有企业，公司坚持以市场需求为导向，秉承"专注、可信、优质、高效"的服务宗旨，深耕三大业务板块："专业化检验检测服务"，业务涵盖建设工程检测、环境监测等专业技术服务。"全链条勘测设计服务"，业务涵盖工程建设项目咨询、勘察（含地灾及压覆矿产评估）设计、施工图设计审查、测绘地理信息、环境影响评价及环保验收等专业技术服务；"一站式人力资源服务"，业务涵盖就业咨询、招聘配置、人才引进、劳务派遣、劳务外包、职业培训、建筑领域三类人员、特种作业人员教育培训考试、网络技术，档案管理（涉密文件资料、涉密档案数字化加工）、广告制作等人才综合服务。</span>
-                </div>
-                
-                <div class="company-website-row">
-                    <span class="footer-website" id="websiteLink">访问官网</span>
-                    <span class="footer-copy-tip" id="copyTip">复制后到浏览器打开</span>
-                    <span class="arrow">›</span>
-                </div>
-
-                <div class="company-qr-wrap">
-                    <div class="company-qr-box"><img src="img/qrcode.png" alt="二维码" /></div>
-                    <div class="company-qr-label">扫码关注我们</div>
-                </div>
-                
-                <div class="company-address-row">
-                    <span class="label">地址：</span>江西省宜春市经济技术开发区经发大道26号
-                </div>
-                <div class="company-contact-row">
-                    <div class="contact-col"><span class="label">电话：</span>0795-3288195</div>
-                    <div class="contact-col"><span class="label">邮编：</span>336600</div>
-                </div>
-                
+    <!-- 隐藏的海报模板 -->
+    <div id="posterWrap">
+        <div class="poster-bg">
+            <div class="poster-content">
+                <img class="poster-logo" src="img/logo11.png" alt="Logo" />
+                <div class="poster-name">余浩</div>
+                <div class="poster-title">综合管理部 · 部长</div>
+                <div class="poster-desc">宜春市国有资本控股有限公司</div>
+                <div id="posterQr"></div>
+                <p class="poster-tip">长按识别二维码 查看名片</p>
             </div>
         </div>
     </div>
 
-    <div class="share-modal-overlay" id="shareModalOverlay">
-        <div class="share-modal">
-            <button class="share-modal-close" id="shareModalClose">✕</button>
-            <div class="share-modal-title">📤 分享名片</div>
-            <div class="share-card-preview">
-                <div class="preview-img"><img src="https://sss222255555.github.io/card/img/share-big.png" alt="分享预览" /></div>
-                <div class="preview-body">
-                    <div class="preview-title">宜春国控·余浩 电子名片</div>
-                    <div class="preview-desc">向你推荐了余浩的名片</div>
-                    <div class="preview-source">来自 宜春市国有资本控股有限公司</div>
-                </div>
-            </div>
-            <div class="share-modal-actions">
-                <button class="sm-btn sm-btn-secondary" id="modalCopyLinkBtn"><span class="emoji">📋</span> 复制链接</button>
-                <button class="sm-btn sm-btn-primary" id="modalShareBtn"><span class="emoji">📤</span> 分享</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="share-modal-overlay" id="qrModalOverlay">
-        <div class="share-modal">
-            <button class="share-modal-close" id="qrModalClose">✕</button>
-            <div class="share-modal-title">📱 扫码访问名片</div>
-            <div id="qrcode"></div>
-            <!-- 已删除保存图片按钮 -->
-            <p class="qr-tip">微信内请长按图片识别</p>
-        </div>
+    <!-- 海报展示弹窗 -->
+    <div id="posterModalOverlay">
+        <span id="closePosterModal">✕</span>
+        <img id="posterImage" src="" alt="名片海报" />
+        <p>长按图片保存或发送给朋友</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
     <script>
         (function() {
             'use strict';
             var WEBSITE_URL = 'http://www.ycsgkgs.com/ycsgkgs/index.html';
             var PAGE_URL = window.location.href;
-            var SHARE_TITLE = '宜春国控·余浩 电子名片';
-            var SHARE_DESC = '向你推荐了余浩的名片';
-            var SHARE_IMG = 'https://sss222255555.github.io/card/img/share-big.png';
 
-            var websiteLink = document.getElementById('websiteLink');
-            var copyTip = document.getElementById('copyTip');
             var copyBtn = document.getElementById('copyBtn');
             var callBtn = document.getElementById('callBtn');
             var qrBtn = document.getElementById('qrBtn');
-            var shareBtn = document.getElementById('shareBtn');
-            var modalOverlay = document.getElementById('shareModalOverlay');
-            var modalClose = document.getElementById('shareModalClose');
-            var modalCopyLinkBtn = document.getElementById('modalCopyLinkBtn');
-            var modalShareBtn = document.getElementById('modalShareBtn');
-            var qrModalOverlay = document.getElementById('qrModalOverlay');
-            var qrModalClose = document.getElementById('qrModalClose');
-            var qrCodeContainer = document.getElementById('qrcode');
+            var posterBtn = document.getElementById('posterBtn');
+            var posterModalOverlay = document.getElementById('posterModalOverlay');
+            var closePosterModal = document.getElementById('closePosterModal');
+            var posterImage = document.getElementById('posterImage');
+
+            // 初始化隐藏的海报里的二维码
+            new QRCode(document.getElementById("posterQr"), {
+                text: PAGE_URL,
+                width: 110,
+                height: 110
+            });
 
             function showToast(msg) {
                 var existing = document.querySelector('.toast-tip');
@@ -281,7 +177,6 @@
                 textarea.value = text;
                 textarea.style.position = 'fixed';
                 textarea.style.left = '-9999px';
-                textarea.style.top = '-9999px';
                 document.body.appendChild(textarea);
                 textarea.focus();
                 textarea.select();
@@ -305,70 +200,59 @@
                 return { name, title, dept, phone, email, company, addr };
             }
 
-            if (websiteLink) websiteLink.addEventListener('click', function(e) { e.preventDefault(); copyText(WEBSITE_URL, '✅ 已复制官网链接'); });
-            if (copyTip) copyTip.addEventListener('click', function(e) { e.preventDefault(); copyText(WEBSITE_URL, '✅ 已复制官网链接'); });
             if (copyBtn) copyBtn.addEventListener('click', function() {
                 var info = getContactInfo();
                 var text = '姓名：' + info.name + '\n部门：' + info.title + '\n职务：' + info.dept + '\n电话：' + info.phone + '\n邮箱：' + info.email + '\n公司：' + info.company + '\n地址：' + info.addr;
                 copyText(text, '✅ 全部信息已复制');
             });
+
             if (callBtn) callBtn.addEventListener('click', function() {
                 var phone = getContactInfo().phone || '17370565453';
                 if (confirm('即将拨打：' + phone)) window.location.href = 'tel:' + phone;
             });
 
             if (qrBtn) qrBtn.addEventListener('click', function() {
-                qrCodeContainer.innerHTML = '';
-                
-                new QRCode(qrCodeContainer, {
-                    text: window.location.href, 
-                    width: 240,
-                    height: 240,
-                    colorDark : "#000000",
-                    colorLight : "#ffffff",
-                    correctLevel : QRCode.CorrectLevel.H
+                var qrModal = document.createElement('div');
+                qrModal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:9999;';
+                var qrBox = document.createElement('div');
+                qrBox.style.cssText = 'background:#fff;padding:20px;border-radius:10px;';
+                new QRCode(qrBox, {
+                    text: PAGE_URL,
+                    width: 200,
+                    height: 200
                 });
+                var closeQr = document.createElement('span');
+                closeQr.textContent = '✕';
+                closeQr.style.cssText = 'color:#fff;font-size:24px;cursor:pointer;margin-top:20px;';
+                closeQr.onclick = function() { document.body.removeChild(qrModal); };
+                qrModal.appendChild(qrBox);
+                qrModal.appendChild(closeQr);
+                document.body.appendChild(qrModal);
+            });
+
+            // 点击生成海报按钮的逻辑
+            if (posterBtn) posterBtn.addEventListener('click', function() {
+                showToast('⏳ 海报生成中...');
                 setTimeout(function() {
-                    var canvas = qrCodeContainer.querySelector('canvas');
-                    if (canvas) {
-                        var imgUrl = canvas.toDataURL("image/png");
-                        qrCodeContainer.innerHTML = '<img src="' + imgUrl + '" alt="二维码" />';
-                    }
-                }, 100); 
-                
-                qrModalOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
+                    var posterWrap = document.getElementById('posterWrap');
+                    html2canvas(posterWrap, { scale: 2 }).then(function(canvas) {
+                        var imgData = canvas.toDataURL('image/png');
+                        posterImage.src = imgData;
+                        posterModalOverlay.classList.add('active');
+                        showToast('✅ 海报生成成功，长按保存');
+                    }).catch(function(err) {
+                        console.error(err);
+                        showToast('⚠️ 生成失败，请检查图片路径');
+                    });
+                }, 200);
             });
 
-            if (qrModalClose) qrModalClose.addEventListener('click', function() {
-                qrModalOverlay.classList.remove('active');
-                document.body.style.overflow = '';
+            if (closePosterModal) closePosterModal.addEventListener('click', function() {
+                posterModalOverlay.classList.remove('active');
             });
-            qrModalOverlay.addEventListener('click', function(e) {
-                if (e.target === qrModalOverlay) {
-                    qrModalOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
+            posterModalOverlay.addEventListener('click', function(e) {
+                if (e.target === posterModalOverlay) posterModalOverlay.classList.remove('active');
             });
-
-            function openShareModal() { modalOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-            function closeShareModal() { modalOverlay.classList.remove('active'); document.body.style.overflow = ''; }
-            if (modalOverlay) modalOverlay.addEventListener('click', function(e) { if (e.target === modalOverlay) closeShareModal(); });
-            if (modalClose) modalClose.addEventListener('click', closeShareModal);
-            if (modalCopyLinkBtn) modalCopyLinkBtn.addEventListener('click', function() { copyText(PAGE_URL, '✅ 链接已复制，可粘贴分享'); closeShareModal(); });
-            
-            if (modalShareBtn) modalShareBtn.addEventListener('click', function() {
-                closeShareModal();
-                if (navigator.share) {
-                    navigator.share({ title: SHARE_TITLE, text: SHARE_DESC, url: PAGE_URL }).catch(function(err) { if (err.name !== 'AbortError') copyText(PAGE_URL, '✅ 链接已复制，可粘贴分享'); });
-                } else { copyText(PAGE_URL, '✅ 链接已复制，可粘贴到微信或浏览器'); }
-            });
-            if (shareBtn) shareBtn.addEventListener('click', function() {
-                if (navigator.share) {
-                    navigator.share({ title: SHARE_TITLE, text: SHARE_DESC, url: PAGE_URL }).catch(function(err) { if (err.name !== 'AbortError') openShareModal(); });
-                } else { openShareModal(); }
-            });
-            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeShareModal(); qrModalOverlay.classList.remove('active'); } });
         })();
     </script>
 </body>
