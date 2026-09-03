@@ -64,24 +64,29 @@
         
         .toast-tip { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(10,46,110,0.93); color: #fff; padding: 10px 26px; border-radius: 30px; font-size: 14px; font-weight: 500; box-shadow: 0 8px 28px rgba(0,0,0,0.28); z-index: 9999; backdrop-filter: blur(4px); max-width: 90%; text-align: center; transition: opacity 0.25s ease; letter-spacing: 0.3px; border: 1px solid rgba(255,255,255,0.12); font-family: "楷体","KaiTi",serif; }
         
-        /* ===== 海报新增样式（保持楷体） ===== */
-        #posterWrap { position: fixed; left: -9999px; top: 0; width: 375px; height: 650px; background: #fff; overflow: hidden; }
-        .poster-bg { width: 100%; height: 100%; background-image: url('img/index_gb.png'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
-        .poster-content { background: rgba(255,255,255,0.96); border-radius: 16px; padding: 35px 25px; text-align: center; width: 85%; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-family: "楷体","KaiTi",serif; }
-        .poster-logo { width: 220px; max-width: 90%; margin-bottom: 20px; }
-        .poster-name { font-size: 32px; font-weight: 700; color: #0a2e6e; margin-bottom: 8px; font-family: "楷体","KaiTi",serif; }
-        .poster-title { font-size: 18px; color: #5a6e8a; margin-bottom: 15px; font-family: "楷体","KaiTi",serif; }
-        .poster-desc { font-size: 15px; color: #444; margin-bottom: 20px; line-height: 1.8; font-weight: 500; font-family: "楷体","KaiTi",serif; }
-        #posterQr { width: 130px; height: 130px; margin: 0 auto; border: 2px solid #e8ecf2; padding: 5px; border-radius: 8px; }
-        .poster-tip { font-size: 12px; color: #999; margin-top: 10px; font-family: "楷体","KaiTi",serif; }
-
-        #posterModalOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 99999; justify-content: center; align-items: center; flex-direction: column; padding: 20px; }
-        #posterModalOverlay.active { display: flex; }
-        #posterModalOverlay img { width: 100%; max-width: 360px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        #posterModalOverlay p { color: #fff; font-size: 14px; margin-top: 20px; font-family: "楷体","KaiTi",serif; }
-        #closePosterModal { color: #fff; font-size: 24px; position: absolute; top: 20px; right: 20px; cursor: pointer; }
+        .share-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); z-index: 10000; justify-content: center; align-items: center; padding: 24px; animation: fadeIn 0.3s ease; }
+        .share-modal-overlay.active { display: flex; }
+        .share-modal { background: #fff; border-radius: 28px; max-width: 400px; width: 100%; padding: 28px 24px 24px 24px; box-shadow: 0 24px 56px rgba(0,0,0,0.35); animation: slideUp 0.35s ease; position: relative; }
+        .share-modal-title { font-size: 16px; font-weight: 600; color: #1a2a4a; text-align: center; margin-bottom: 18px; letter-spacing: 0.5px; font-family: "楷体","KaiTi",serif; }
+        .share-modal-close { position: absolute; top: 12px; right: 16px; font-size: 24px; color: #8a9bb8; cursor: pointer; background: none; border: none; line-height: 1; }
+        .share-modal-close:hover { color: #1a2a4a; }
+        .share-card-preview { background: #f5f7fa; border-radius: 18px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 20px; border: 1px solid #e8ecf2; }
+        .share-card-preview .preview-img { width: 100%; aspect-ratio: 16/9; background: #d0d8e4; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .share-card-preview .preview-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .share-card-preview .preview-body { padding: 12px 16px 14px 16px; background: #fff; }
+        .share-card-preview .preview-title { font-size: 16px; font-weight: 600; color: #0a2e6e; margin-bottom: 4px; font-family: "楷体","KaiTi",serif; }
+        .share-card-preview .preview-desc { font-size: 13px; color: #5a6e8a; line-height: 1.5; font-family: "楷体","KaiTi",serif; }
+        .share-card-preview .preview-source { font-size: 11px; color: #8a9bb8; margin-top: 6px; font-family: "楷体","KaiTi",serif; }
+        .share-modal-actions { display: flex; gap: 12px; margin-top: 6px; }
+        .share-modal-actions .sm-btn { flex: 1; padding: 10px 0; border-radius: 22px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: "楷体","KaiTi",serif; }
+        .share-modal-actions .sm-btn-primary { background: #0a2e6e; color: #fff; box-shadow: 0 4px 12px rgba(10,46,110,0.25); }
+        .share-modal-actions .sm-btn-primary:hover { background: #13408a; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(10,46,110,0.35); }
+        .share-modal-actions .sm-btn-secondary { background: #eef1f5; color: #1a2a4a; }
+        .share-modal-actions .sm-btn-secondary:hover { background: #e2e7ed; transform: translateY(-1px); }
         
         .hidden-share-image { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(30px) scale(0.96); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
         
         #qrModalOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); z-index: 10000; justify-content: center; align-items: center; padding: 24px; }
         #qrModalOverlay.active { display: flex; }
@@ -111,6 +116,8 @@
             .company-qr-label { font-size: 10px; }
             .actions { padding: 0 12px 10px 12px; gap: 8px; }
             .actions .btn { font-size: 12px; padding: 9px 0; }
+            .share-modal { padding: 20px 16px 20px 16px; border-radius: 22px; }
+            .share-modal-title { font-size: 15px; }
         }
         @media (max-width: 380px) {
             .bg-image { min-height: 75vh; padding-bottom: 6px; }
@@ -131,6 +138,8 @@
             .company-qr-box { width: 60px; height: 60px; padding: 4px; }
             .actions { gap: 6px; }
             .actions .btn { font-size: 11px; padding: 8px 0; }
+            .share-modal { padding: 16px 12px 16px 12px; border-radius: 18px; }
+            .share-modal-title { font-size: 14px; }
         }
     </style>
 </head>
@@ -198,30 +207,23 @@
         </div>
     </div>
 
-    <!-- 隐藏的海报模板 -->
-    <div id="posterWrap">
-        <div class="poster-bg">
-            <div class="poster-content">
-                <img class="poster-logo" src="img/logo11.png" alt="Logo" />
-                <div class="poster-name">余浩</div>
-                <div class="poster-title">综合管理部 · 部长</div>
-                <div class="poster-desc">
-                    宜春市国有资本控股有限公司<br>
-                    电话：17370565453<br>
-                    邮箱：17370565453@163.com<br>
-                    地址：江西省宜春市袁州区经发大道
+    <div class="share-modal-overlay" id="shareModalOverlay">
+        <div class="share-modal">
+            <button class="share-modal-close" id="shareModalClose">✕</button>
+            <div class="share-modal-title">📤 分享名片</div>
+            <div class="share-card-preview">
+                <div class="preview-img"><img src="https://sss222255555.github.io/card/img/share-big.png" alt="分享预览" /></div>
+                <div class="preview-body">
+                    <div class="preview-title">宜春国控·余浩 电子名片</div>
+                    <div class="preview-desc">向你推荐了余浩的名片</div>
+                    <div class="preview-source">来自 宜春市国有资本控股有限公司</div>
                 </div>
-                <div id="posterQr"></div>
-                <p class="poster-tip">长按识别二维码 查看名片</p>
+            </div>
+            <div class="share-modal-actions">
+                <button class="sm-btn sm-btn-secondary" id="modalCopyLinkBtn"><span class="emoji">📋</span> 复制链接</button>
+                <button class="sm-btn sm-btn-primary" id="modalShareBtn"><span class="emoji">📤</span> 分享</button>
             </div>
         </div>
-    </div>
-
-    <!-- 海报展示弹窗 -->
-    <div id="posterModalOverlay">
-        <span id="closePosterModal">✕</span>
-        <img id="posterImage" src="" alt="名片海报" />
-        <p>长按图片保存或发送给朋友</p>
     </div>
 
     <div class="share-modal-overlay" id="qrModalOverlay">
@@ -229,18 +231,21 @@
             <button class="share-modal-close" id="qrModalClose">✕</button>
             <div class="share-modal-title">📱 扫码访问名片</div>
             <div id="qrcode"></div>
+            <!-- 已删除保存图片按钮 -->
             <p class="qr-tip">微信内请长按图片识别</p>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
     <script>
         (function() {
             'use strict';
             var WEBSITE_URL = 'http://www.ycsgkgs.com/ycsgkgs/index.html';
             var PAGE_URL = window.location.href;
+            var SHARE_TITLE = '宜春国控·余浩 电子名片';
+            var SHARE_DESC = '向你推荐了余浩的名片';
+            var SHARE_IMG = 'https://sss222255555.github.io/card/img/share-big.png';
 
             var websiteLink = document.getElementById('websiteLink');
             var copyTip = document.getElementById('copyTip');
@@ -248,22 +253,13 @@
             var callBtn = document.getElementById('callBtn');
             var qrBtn = document.getElementById('qrBtn');
             var shareBtn = document.getElementById('shareBtn');
-            
+            var modalOverlay = document.getElementById('shareModalOverlay');
+            var modalClose = document.getElementById('shareModalClose');
+            var modalCopyLinkBtn = document.getElementById('modalCopyLinkBtn');
+            var modalShareBtn = document.getElementById('modalShareBtn');
             var qrModalOverlay = document.getElementById('qrModalOverlay');
             var qrModalClose = document.getElementById('qrModalClose');
             var qrCodeContainer = document.getElementById('qrcode');
-
-            // 海报相关元素
-            var posterModalOverlay = document.getElementById('posterModalOverlay');
-            var closePosterModal = document.getElementById('closePosterModal');
-            var posterImage = document.getElementById('posterImage');
-
-            // 初始化海报二维码
-            new QRCode(document.getElementById("posterQr"), {
-                text: PAGE_URL,
-                width: 120,
-                height: 120
-            });
 
             function showToast(msg) {
                 var existing = document.querySelector('.toast-tip');
@@ -323,6 +319,7 @@
 
             if (qrBtn) qrBtn.addEventListener('click', function() {
                 qrCodeContainer.innerHTML = '';
+                
                 new QRCode(qrCodeContainer, {
                     text: window.location.href, 
                     width: 240,
@@ -354,32 +351,24 @@
                 }
             });
 
-            // 点击分享按钮：生成海报并展示
+            function openShareModal() { modalOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+            function closeShareModal() { modalOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+            if (modalOverlay) modalOverlay.addEventListener('click', function(e) { if (e.target === modalOverlay) closeShareModal(); });
+            if (modalClose) modalClose.addEventListener('click', closeShareModal);
+            if (modalCopyLinkBtn) modalCopyLinkBtn.addEventListener('click', function() { copyText(PAGE_URL, '✅ 链接已复制，可粘贴分享'); closeShareModal(); });
+            
+            if (modalShareBtn) modalShareBtn.addEventListener('click', function() {
+                closeShareModal();
+                if (navigator.share) {
+                    navigator.share({ title: SHARE_TITLE, text: SHARE_DESC, url: PAGE_URL }).catch(function(err) { if (err.name !== 'AbortError') copyText(PAGE_URL, '✅ 链接已复制，可粘贴分享'); });
+                } else { copyText(PAGE_URL, '✅ 链接已复制，可粘贴到微信或浏览器'); }
+            });
             if (shareBtn) shareBtn.addEventListener('click', function() {
-                showToast('⏳ 海报生成中...');
-                setTimeout(function() {
-                    var posterWrap = document.getElementById('posterWrap');
-                    html2canvas(posterWrap, { scale: 2 }).then(function(canvas) {
-                        var imgData = canvas.toDataURL('image/png');
-                        posterImage.src = imgData;
-                        posterModalOverlay.classList.add('active');
-                        showToast('✅ 海报已生成，请长按图片保存或转发');
-                    }).catch(function(err) {
-                        console.error(err);
-                        showToast('⚠️ 生成失败，请检查图片路径');
-                    });
-                }, 200);
+                if (navigator.share) {
+                    navigator.share({ title: SHARE_TITLE, text: SHARE_DESC, url: PAGE_URL }).catch(function(err) { if (err.name !== 'AbortError') openShareModal(); });
+                } else { openShareModal(); }
             });
-
-            // 关闭海报弹窗
-            if (closePosterModal) closePosterModal.addEventListener('click', function() {
-                posterModalOverlay.classList.remove('active');
-            });
-            posterModalOverlay.addEventListener('click', function(e) {
-                if (e.target === posterModalOverlay) posterModalOverlay.classList.remove('active');
-            });
-
-            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { qrModalOverlay.classList.remove('active'); posterModalOverlay.classList.remove('active'); } });
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeShareModal(); qrModalOverlay.classList.remove('active'); } });
         })();
     </script>
 </body>
