@@ -64,38 +64,7 @@
         
         .toast-tip { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(10,46,110,0.93); color: #fff; padding: 10px 26px; border-radius: 30px; font-size: 14px; font-weight: 500; box-shadow: 0 8px 28px rgba(0,0,0,0.28); z-index: 9999; backdrop-filter: blur(4px); max-width: 90%; text-align: center; transition: opacity 0.25s ease; letter-spacing: 0.3px; border: 1px solid rgba(255,255,255,0.12); font-family: "楷体","KaiTi",serif; }
         
-        .share-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); z-index: 10000; justify-content: center; align-items: center; padding: 24px; animation: fadeIn 0.3s ease; }
-        .share-modal-overlay.active { display: flex; }
-        .share-modal { background: #fff; border-radius: 28px; max-width: 400px; width: 100%; padding: 28px 24px 24px 24px; box-shadow: 0 24px 56px rgba(0,0,0,0.35); animation: slideUp 0.35s ease; position: relative; }
-        .share-modal-title { font-size: 16px; font-weight: 600; color: #1a2a4a; text-align: center; margin-bottom: 18px; letter-spacing: 0.5px; font-family: "楷体","KaiTi",serif; }
-        .share-modal-close { position: absolute; top: 12px; right: 16px; font-size: 24px; color: #8a9bb8; cursor: pointer; background: none; border: none; line-height: 1; }
-        .share-modal-close:hover { color: #1a2a4a; }
-        .share-card-preview { background: #f5f7fa; border-radius: 18px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 20px; border: 1px solid #e8ecf2; }
-        .share-card-preview .preview-img { width: 100%; aspect-ratio: 16/9; background: #d0d8e4; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .share-card-preview .preview-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .share-card-preview .preview-body { padding: 12px 16px 14px 16px; background: #fff; }
-        .share-card-preview .preview-title { font-size: 16px; font-weight: 600; color: #0a2e6e; margin-bottom: 4px; font-family: "楷体","KaiTi",serif; }
-        .share-card-preview .preview-desc { font-size: 13px; color: #5a6e8a; line-height: 1.5; font-family: "楷体","KaiTi",serif; }
-        .share-card-preview .preview-source { font-size: 11px; color: #8a9bb8; margin-top: 6px; font-family: "楷体","KaiTi",serif; }
-        .share-modal-actions { display: flex; gap: 12px; margin-top: 6px; }
-        .share-modal-actions .sm-btn { flex: 1; padding: 10px 0; border-radius: 22px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: "楷体","KaiTi",serif; }
-        .share-modal-actions .sm-btn-primary { background: #0a2e6e; color: #fff; box-shadow: 0 4px 12px rgba(10,46,110,0.25); }
-        .share-modal-actions .sm-btn-primary:hover { background: #13408a; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(10,46,110,0.35); }
-        .share-modal-actions .sm-btn-secondary { background: #eef1f5; color: #1a2a4a; }
-        .share-modal-actions .sm-btn-secondary:hover { background: #e2e7ed; transform: translateY(-1px); }
-        
-        .hidden-share-image { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { transform: translateY(30px) scale(0.96); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
-        
-        #qrModalOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); z-index: 10000; justify-content: center; align-items: center; padding: 24px; }
-        #qrModalOverlay.active { display: flex; }
-        #qrModalOverlay .share-modal { text-align: center; }
-        #qrcode { display: flex; justify-content: center; margin: 20px 0; }
-        #qrcode img { display: block; width: 240px; height: 240px; margin: 0 auto; -webkit-touch-callout: default; pointer-events: auto; }
-        .qr-tip { font-size: 12px; color: #888; margin-top: -10px; margin-bottom: 10px; }
-
-        /* ===== 海报及弹窗功能新增样式（保持楷体） ===== */
+        /* ===== 海报新增样式（保持楷体） ===== */
         #posterWrap { position: fixed; left: -9999px; top: 0; width: 375px; height: 650px; background: #fff; overflow: hidden; }
         .poster-bg { width: 100%; height: 100%; background-image: url('img/index_gb.png'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
         .poster-content { background: rgba(255,255,255,0.96); border-radius: 16px; padding: 35px 25px; text-align: center; width: 85%; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-family: "楷体","KaiTi",serif; }
@@ -111,6 +80,15 @@
         #posterModalOverlay img { width: 100%; max-width: 360px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         #posterModalOverlay p { color: #fff; font-size: 14px; margin-top: 20px; font-family: "楷体","KaiTi",serif; }
         #closePosterModal { color: #fff; font-size: 24px; position: absolute; top: 20px; right: 20px; cursor: pointer; }
+        
+        .hidden-share-image { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+        
+        #qrModalOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); z-index: 10000; justify-content: center; align-items: center; padding: 24px; }
+        #qrModalOverlay.active { display: flex; }
+        #qrModalOverlay .share-modal { text-align: center; }
+        #qrcode { display: flex; justify-content: center; margin: 20px 0; }
+        #qrcode img { display: block; width: 240px; height: 240px; margin: 0 auto; -webkit-touch-callout: default; pointer-events: auto; }
+        .qr-tip { font-size: 12px; color: #888; margin-top: -10px; margin-bottom: 10px; }
 
         @media (max-width: 480px) {
             .bg-image { min-height: 80vh; padding-bottom: 8px; }
@@ -220,7 +198,7 @@
         </div>
     </div>
 
-    <!-- 隐藏的海报模板（用于生成长图） -->
+    <!-- 隐藏的海报模板 -->
     <div id="posterWrap">
         <div class="poster-bg">
             <div class="poster-content">
@@ -246,6 +224,15 @@
         <p>长按图片保存或发送给朋友</p>
     </div>
 
+    <div class="share-modal-overlay" id="qrModalOverlay">
+        <div class="share-modal">
+            <button class="share-modal-close" id="qrModalClose">✕</button>
+            <div class="share-modal-title">📱 扫码访问名片</div>
+            <div id="qrcode"></div>
+            <p class="qr-tip">微信内请长按图片识别</p>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
@@ -255,16 +242,23 @@
             var WEBSITE_URL = 'http://www.ycsgkgs.com/ycsgkgs/index.html';
             var PAGE_URL = window.location.href;
 
+            var websiteLink = document.getElementById('websiteLink');
+            var copyTip = document.getElementById('copyTip');
             var copyBtn = document.getElementById('copyBtn');
             var callBtn = document.getElementById('callBtn');
             var qrBtn = document.getElementById('qrBtn');
             var shareBtn = document.getElementById('shareBtn');
+            
+            var qrModalOverlay = document.getElementById('qrModalOverlay');
+            var qrModalClose = document.getElementById('qrModalClose');
+            var qrCodeContainer = document.getElementById('qrcode');
 
+            // 海报相关元素
             var posterModalOverlay = document.getElementById('posterModalOverlay');
             var closePosterModal = document.getElementById('closePosterModal');
             var posterImage = document.getElementById('posterImage');
 
-            // 初始化隐藏海报上的二维码
+            // 初始化海报二维码
             new QRCode(document.getElementById("posterQr"), {
                 text: PAGE_URL,
                 width: 120,
@@ -291,6 +285,7 @@
                 textarea.value = text;
                 textarea.style.position = 'fixed';
                 textarea.style.left = '-9999px';
+                textarea.style.top = '-9999px';
                 document.body.appendChild(textarea);
                 textarea.focus();
                 textarea.select();
@@ -314,37 +309,52 @@
                 return { name, title, dept, phone, email, company, addr };
             }
 
+            if (websiteLink) websiteLink.addEventListener('click', function(e) { e.preventDefault(); copyText(WEBSITE_URL, '✅ 已复制官网链接'); });
+            if (copyTip) copyTip.addEventListener('click', function(e) { e.preventDefault(); copyText(WEBSITE_URL, '✅ 已复制官网链接'); });
             if (copyBtn) copyBtn.addEventListener('click', function() {
                 var info = getContactInfo();
                 var text = '姓名：' + info.name + '\n部门：' + info.title + '\n职务：' + info.dept + '\n电话：' + info.phone + '\n邮箱：' + info.email + '\n公司：' + info.company + '\n地址：' + info.addr;
                 copyText(text, '✅ 全部信息已复制');
             });
-
             if (callBtn) callBtn.addEventListener('click', function() {
                 var phone = getContactInfo().phone || '17370565453';
                 if (confirm('即将拨打：' + phone)) window.location.href = 'tel:' + phone;
             });
 
             if (qrBtn) qrBtn.addEventListener('click', function() {
-                var qrModal = document.createElement('div');
-                qrModal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:9999;';
-                var qrBox = document.createElement('div');
-                qrBox.style.cssText = 'background:#fff;padding:20px;border-radius:10px;';
-                new QRCode(qrBox, {
-                    text: PAGE_URL,
-                    width: 200,
-                    height: 200
+                qrCodeContainer.innerHTML = '';
+                new QRCode(qrCodeContainer, {
+                    text: window.location.href, 
+                    width: 240,
+                    height: 240,
+                    colorDark : "#000000",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H
                 });
-                var closeQr = document.createElement('span');
-                closeQr.textContent = '✕';
-                closeQr.style.cssText = 'color:#fff;font-size:24px;cursor:pointer;margin-top:20px;';
-                closeQr.onclick = function() { document.body.removeChild(qrModal); };
-                qrModal.appendChild(qrBox);
-                qrModal.appendChild(closeQr);
-                document.body.appendChild(qrModal);
+                setTimeout(function() {
+                    var canvas = qrCodeContainer.querySelector('canvas');
+                    if (canvas) {
+                        var imgUrl = canvas.toDataURL("image/png");
+                        qrCodeContainer.innerHTML = '<img src="' + imgUrl + '" alt="二维码" />';
+                    }
+                }, 100); 
+                
+                qrModalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
             });
 
-            // 点击分享按钮生成海报
+            if (qrModalClose) qrModalClose.addEventListener('click', function() {
+                qrModalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            qrModalOverlay.addEventListener('click', function(e) {
+                if (e.target === qrModalOverlay) {
+                    qrModalOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // 点击分享按钮：生成海报并展示
             if (shareBtn) shareBtn.addEventListener('click', function() {
                 showToast('⏳ 海报生成中...');
                 setTimeout(function() {
@@ -353,7 +363,7 @@
                         var imgData = canvas.toDataURL('image/png');
                         posterImage.src = imgData;
                         posterModalOverlay.classList.add('active');
-                        showToast('✅ 分享海报已生成，长按保存或发送');
+                        showToast('✅ 海报已生成，请长按图片保存或转发');
                     }).catch(function(err) {
                         console.error(err);
                         showToast('⚠️ 生成失败，请检查图片路径');
@@ -361,12 +371,15 @@
                 }, 200);
             });
 
+            // 关闭海报弹窗
             if (closePosterModal) closePosterModal.addEventListener('click', function() {
                 posterModalOverlay.classList.remove('active');
             });
             posterModalOverlay.addEventListener('click', function(e) {
                 if (e.target === posterModalOverlay) posterModalOverlay.classList.remove('active');
             });
+
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { qrModalOverlay.classList.remove('active'); posterModalOverlay.classList.remove('active'); } });
         })();
     </script>
 </body>
