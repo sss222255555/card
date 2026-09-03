@@ -36,8 +36,11 @@
         .company-area { margin: 0 24px 16px 24px; padding: 0 0 16px 0; border-radius: 20px; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.06); overflow: hidden; font-family: "楷体","KaiTi",serif; position: relative; z-index: 2; }
         .company-logo { width: 100%; display: flex; justify-content: center; align-items: center; padding: 12px 0 8px 0; }
         .company-logo img { width: 100%; height: auto; max-height: 140px; object-fit: contain; display: block; }
+        
+        /* 【重点补回】公司介绍样式 */
         .company-desc { font-size: 16px; line-height: 2.0; color: #2c3e6b; text-align: justify; letter-spacing: 0.5px; padding: 0 22px; }
         .company-desc .first-line { display: block; text-indent: 2em; }
+        
         .company-website-row { display: flex; align-items: center; justify-content: flex-start; gap: 10px; flex-wrap: wrap; padding: 14px 22px 8px 22px; margin-top: 4px; }
         .company-website-row .footer-website { font-size: 16px; font-weight: 600; color: #0a2e6e; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; text-decoration: none; }
         .company-website-row .footer-website:hover { color: #13408a; }
@@ -55,11 +58,10 @@
         .company-contact-row .contact-col { flex: 1; text-align: left; }
         .company-contact-row .contact-col .label { color: #7a8aaa; font-weight: 400; }
 
-        /* 海报样式修改：放大Logo，丰富内容 */
+        /* 海报样式 */
         #posterWrap { position: fixed; left: -9999px; top: 0; width: 375px; height: 650px; background: #fff; overflow: hidden; }
         .poster-bg { width: 100%; height: 100%; background-image: url('img/index_gb.png'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
         .poster-content { background: rgba(255,255,255,0.96); border-radius: 16px; padding: 35px 25px; text-align: center; width: 85%; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        /* 放大Logo */
         .poster-logo { width: 220px; max-width: 90%; margin-bottom: 20px; }
         .poster-name { font-size: 30px; font-weight: 700; color: #0a2e6e; margin-bottom: 8px; }
         .poster-title { font-size: 16px; color: #5a6e8a; margin-bottom: 15px; }
@@ -107,6 +109,34 @@
             <div class="actions">
                 <button class="btn" id="qrBtn"><span class="emoji">📱</span> 二维码</button>
                 <button class="btn" id="posterBtn"><span class="emoji">📤</span> 分享海报</button>
+            </div>
+
+            <div class="company-area">
+                <div class="company-logo"><img src="img/logo11.png" alt="宜春国控" /></div>
+                
+                <!-- 【重点补回】公司介绍内容 -->
+                <div class="company-desc">
+                    <span class="first-line">宜春市国有资本控股有限公司成立于2020年5月，是市属现代综合服务型国有企业，公司坚持以市场需求为导向，秉承"专注、可信、优质、高效"的服务宗旨，深耕三大业务板块："专业化检验检测服务"，业务涵盖建设工程检测、环境监测等专业技术服务。"全链条勘测设计服务"，业务涵盖工程建设项目咨询、勘察（含地灾及压覆矿产评估）设计、施工图设计审查、测绘地理信息、环境影响评价及环保验收等专业技术服务；"一站式人力资源服务"，业务涵盖就业咨询、招聘配置、人才引进、劳务派遣、劳务外包、职业培训、建筑领域三类人员、特种作业人员教育培训考试、网络技术，档案管理（涉密文件资料、涉密档案数字化加工）、广告制作等人才综合服务。</span>
+                </div>
+                
+                <div class="company-website-row">
+                    <span class="footer-website" id="websiteLink">访问官网</span>
+                    <span class="footer-copy-tip" id="copyTip">复制后到浏览器打开</span>
+                    <span class="arrow">›</span>
+                </div>
+
+                <div class="company-qr-wrap">
+                    <div class="company-qr-box"><img src="img/qrcode.png" alt="二维码" /></div>
+                    <div class="company-qr-label">扫码关注我们</div>
+                </div>
+                
+                <div class="company-address-row">
+                    <span class="label">地址：</span>江西省宜春市经济技术开发区经发大道26号
+                </div>
+                <div class="company-contact-row">
+                    <div class="contact-col"><span class="label">电话：</span>0795-3288195</div>
+                    <div class="contact-col"><span class="label">邮编：</span>336600</div>
+                </div>
             </div>
         </div>
     </div>
