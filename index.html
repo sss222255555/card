@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>宜春国控 · 余浩 电子名片</title>
 
-    <!-- ===== Open Graph 标签 ===== -->
+    <!-- ===== Open Graph 标签（微信爬虫抓取） ===== -->
     <meta property="og:title" content="宜春国控·余浩 电子名片" />
     <meta property="og:description" content="向你推荐了余浩的名片" />
-    <meta property="og:image" content="img/share-big.png" />
+    <!-- 修改：改为绝对路径，微信才能抓取到图片 -->
+    <meta property="og:image" content="https://sss222255555.github.io/card/img/share-big.png" />
     <meta property="og:url" content="https://sss222255555.github.io/card/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="宜春国控" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="image_src" href="img/share-big.png" />
+    <!-- 修改：改为绝对路径 -->
+    <link rel="image_src" href="https://sss222255555.github.io/card/img/share-big.png" />
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -48,14 +50,14 @@
         .company-desc { font-size: 16px; line-height: 2.0; color: #2c3e6b; text-align: justify; letter-spacing: 0.5px; padding: 0 22px; }
         .company-desc .first-line { display: block; text-indent: 2em; }
         
-        /* ===== 修改点：新增箭头靠右对齐样式 ===== */
+        /* 箭头靠右样式 */
         .company-website-row { display: flex; align-items: center; justify-content: flex-start; gap: 10px; flex-wrap: wrap; padding: 14px 22px 8px 22px; margin-top: 4px; }
         .company-website-row .footer-website { font-size: 16px; font-weight: 600; color: #0a2e6e; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; text-decoration: none; }
         .company-website-row .footer-website:hover { color: #13408a; }
         
         .company-website-row .footer-copy-tip { font-size: 12px; color: #8a9bb8; cursor: pointer; border-bottom: 1px dashed #c8d2e0; padding-bottom: 1px; }
         .company-website-row .footer-copy-tip:hover { color: #0a2e6e; }
-        .company-website-row .arrow { font-size: 20px; color: #0a2e6e; cursor: pointer; margin-left: auto; } /* 这里是核心，auto把箭头推到最右 */
+        .company-website-row .arrow { font-size: 20px; color: #0a2e6e; cursor: pointer; margin-left: auto; }
 
         .company-qr-wrap { display: flex; flex-direction: column; align-items: center; padding: 4px 0 10px 0; }
         .company-qr-box { width: 80px; height: 80px; background: #fff; border-radius: 12px; padding: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e8ecf2; display: flex; align-items: center; justify-content: center; }
@@ -78,6 +80,7 @@
         .share-modal-close:hover { color: #1a2a4a; }
         .share-card-preview { background: #f5f7fa; border-radius: 18px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 20px; border: 1px solid #e8ecf2; }
         .share-card-preview .preview-img { width: 100%; aspect-ratio: 16/9; background: #d0d8e4; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        <!-- 预览图也改为绝对路径，保证正常显示 -->
         .share-card-preview .preview-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .share-card-preview .preview-body { padding: 12px 16px 14px 16px; background: #fff; }
         .share-card-preview .preview-title { font-size: 16px; font-weight: 600; color: #0a2e6e; margin-bottom: 4px; font-family: "楷体","KaiTi",serif; }
@@ -93,7 +96,7 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { transform: translateY(30px) scale(0.96); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
 
-        /* 二维码弹窗专用样式（支持长按识别与保存） */
+        /* 二维码弹窗专用样式 */
         #qrModalOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); z-index: 10000; justify-content: center; align-items: center; padding: 24px; }
         #qrModalOverlay.active { display: flex; }
         #qrModalOverlay .share-modal { text-align: center; }
@@ -163,9 +166,9 @@
     </style>
 </head>
 <body>
-    <!-- 隐藏图片帮助微信爬虫 -->
+    <!-- 隐藏图片帮助微信爬虫（使用绝对路径） -->
     <div class="hidden-share-image">
-        <img src="img/share-big.png" alt="分享预览图" />
+        <img src="https://sss222255555.github.io/card/img/share-big.png" alt="分享预览图" />
     </div>
 
     <div class="card">
@@ -203,7 +206,7 @@
                     <span class="first-line">宜春市国有资本控股有限公司成立于2020年5月，是市属现代综合服务型国有企业，公司坚持以市场需求为导向，秉承"专注、可信、优质、高效"的服务宗旨，深耕三大业务板块："专业化检验检测服务"，业务涵盖建设工程检测、环境监测等专业技术服务。"全链条勘测设计服务"，业务涵盖工程建设项目咨询、勘察（含地灾及压覆矿产评估）设计、施工图设计审查、测绘地理信息、环境影响评价及环保验收等专业技术服务；"一站式人力资源服务"，业务涵盖就业咨询、招聘配置、人才引进、劳务派遣、劳务外包、职业培训、建筑领域三类人员、特种作业人员教育培训考试、网络技术，档案管理（涉密文件资料、涉密档案数字化加工）、广告制作等人才综合服务。</span>
                 </div>
                 
-                <!-- ===== 修改点：HTML结构调整，箭头独立靠右 ===== -->
+                <!-- 修改点：箭头在最右端 -->
                 <div class="company-website-row">
                     <span class="footer-website" id="websiteLink">访问官网</span>
                     <span class="footer-copy-tip" id="copyTip">复制后到浏览器打开</span>
@@ -234,7 +237,7 @@
             <button class="share-modal-close" id="shareModalClose">✕</button>
             <div class="share-modal-title">📤 分享名片</div>
             <div class="share-card-preview">
-                <div class="preview-img"><img src="img/share-big.png" alt="分享预览" /></div>
+                <div class="preview-img"><img src="https://sss222255555.github.io/card/img/share-big.png" alt="分享预览" /></div>
                 <div class="preview-body">
                     <div class="preview-title">宜春国控·余浩 电子名片</div>
                     <div class="preview-desc">向你推荐了余浩的名片</div>
@@ -269,7 +272,8 @@
             var PAGE_URL = window.location.href;
             var SHARE_TITLE = '宜春国控·余浩 电子名片';
             var SHARE_DESC = '向你推荐了余浩的名片';
-            var SHARE_IMG = 'img/share-big.png';
+            // 修改：改为绝对路径
+            var SHARE_IMG = 'https://sss222255555.github.io/card/img/share-big.png';
 
             // DOM 引用
             var websiteLink = document.getElementById('websiteLink');
