@@ -8,7 +8,6 @@
     <!-- ===== Open Graph 标签 ===== -->
     <meta property="og:title" content="宜春国控·余浩 电子名片" />
     <meta property="og:description" content="向你推荐了余浩的名片" />
-    <!-- 此处为相对路径，请确保 img/share-big.png 存在 -->
     <meta property="og:image" content="img/share-big.png" />
     <meta property="og:url" content="https://sss222255555.github.io/card/" />
     <meta property="og:type" content="website" />
@@ -21,8 +20,8 @@
         body { font-family: "楷体","KaiTi",serif; background: #e8ecf2; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
         .card { max-width: 440px; width: 100%; border-radius: 24px; overflow: hidden; box-shadow: 0 12px 36px rgba(0,0,0,0.12); background: transparent; }
         
-        /* 修改点1：修复过渡硬线，bottom改为0 */
-        .bg-image { width: 100%; min-height: 85vh; background-image: url('img/index_gb.png'); background-size: cover; background-position: center 30%; background-repeat: no-repeat; position: relative; display: flex; flex-direction: column; align-items: center; z-index: 0; padding-bottom: 30px; }
+        /* 背景过渡 */
+        .bg-image { width: 100%; min-height: 85vh; background-image: url('img/index_gb.png'); background-size: cover; background-position: center 30%; background-repeat: no-repeat; position: relative; display: flex; flex-direction: column; align-items: center; z-index: 0; padding-bottom: 10px; }
         .bg-image::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 120px; background: linear-gradient(to bottom, transparent 0%, rgba(161,184,206,0.2) 20%, rgba(161,184,206,0.5) 50%, rgba(161,184,206,0.85) 80%, #A1B8CE 100%); pointer-events: none; z-index: 1; }
         
         .brand-bar { padding: 20px 0 0 0; display: flex; justify-content: center; align-items: center; position: relative; z-index: 2; width: 100%; }
@@ -34,38 +33,42 @@
         .info-title, .info-dept, .info-contact, .info-company, .info-address { font-size: 16px; font-weight: 400; color: #000; }
         .info-company { font-weight: 600; }
 
-        /* 修改点2：修复过渡硬线，margin-top改为0，删除内阴影 */
-        .color-fill { width: 100%; background: linear-gradient(to bottom, #A1B8CE 0%, #7593AF 25%, #3b557a 50%, #3b557a 75%, #092145 100%); margin-top: 0; padding-top: 26px; padding-bottom: 20px; border-radius: 0 0 24px 24px; }
+        /* 底部渐变区块 */
+        .color-fill { width: 100%; background: linear-gradient(to bottom, #A1B8CE 0%, #7593AF 25%, #3b557a 50%, #3b557a 75%, #092145 100%); margin-top: 0; padding-top: 15px; padding-bottom: 20px; border-radius: 0 0 24px 24px; }
 
-        .actions { display: flex; flex-wrap: wrap; padding: 0 16px 8px 16px; gap: 10px; justify-content: center; position: relative; z-index: 2; }
-        .actions .btn { flex: 1 0 auto; min-width: 52px; padding: 7px 10px; border-radius: 22px; border: none; background: rgba(255,255,255,0.92); color: #0a2e6e; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.10); border: 1px solid rgba(255,255,255,0.30); white-space: nowrap; font-family: "楷体","KaiTi",serif; backdrop-filter: blur(4px); }
+        /* 按钮组通用样式 */
+        .actions { display: flex; gap: 10px; justify-content: center; position: relative; z-index: 2; padding: 0 16px 12px 16px; }
+        .actions .btn { flex: 1; padding: 10px 0; border-radius: 22px; border: none; background: rgba(255,255,255,0.92); color: #0a2e6e; font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.10); border: 1px solid rgba(255,255,255,0.30); white-space: nowrap; font-family: "楷体","KaiTi",serif; backdrop-filter: blur(4px); }
         .actions .btn:hover { background: rgba(255,255,255,0.98); border-color: rgba(255,255,255,0.60); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(10,46,110,0.20); }
-        .actions .btn-primary { background: rgba(10,46,110,0.88); color: #fff; border-color: rgba(255,255,255,0.20); }
-        .actions .btn-primary:hover { background: rgba(10,46,110,0.98); border-color: rgba(255,255,255,0.40); box-shadow: 0 6px 18px rgba(10,46,110,0.35); }
-        .share-row { display: flex; justify-content: center; padding: 2px 16px 16px 16px; position: relative; z-index: 2; }
-        .share-row .btn-share { padding: 7px 24px; border-radius: 22px; border: none; background: rgba(255,255,255,0.92); color: #0a2e6e; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.10); border: 1px solid rgba(255,255,255,0.30); font-family: "楷体","KaiTi",serif; backdrop-filter: blur(4px); min-width: 100px; }
-        .share-row .btn-share:hover { background: rgba(255,255,255,0.98); border-color: rgba(255,255,255,0.60); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(10,46,110,0.20); }
+        .actions .btn .emoji { font-size: 15px; }
+
         .company-area { margin: 0 24px 16px 24px; padding: 0 0 16px 0; border-radius: 20px; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.06); overflow: hidden; font-family: "楷体","KaiTi",serif; position: relative; z-index: 2; }
         .company-logo { width: 100%; display: flex; justify-content: center; align-items: center; padding: 12px 0 8px 0; }
         .company-logo img { width: 100%; height: auto; max-height: 140px; object-fit: contain; display: block; }
         .company-desc { font-size: 16px; line-height: 2.0; color: #2c3e6b; text-align: justify; letter-spacing: 0.5px; padding: 0 22px; }
         .company-desc .first-line { display: block; text-indent: 2em; }
+        
+        /* ===== 修改点：新增箭头靠右对齐样式 ===== */
         .company-website-row { display: flex; align-items: center; justify-content: flex-start; gap: 10px; flex-wrap: wrap; padding: 14px 22px 8px 22px; margin-top: 4px; }
         .company-website-row .footer-website { font-size: 16px; font-weight: 600; color: #0a2e6e; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; text-decoration: none; }
         .company-website-row .footer-website:hover { color: #13408a; }
-        .company-website-row .footer-website .arrow { font-size: 20px; color: #0a2e6e; }
+        
         .company-website-row .footer-copy-tip { font-size: 12px; color: #8a9bb8; cursor: pointer; border-bottom: 1px dashed #c8d2e0; padding-bottom: 1px; }
         .company-website-row .footer-copy-tip:hover { color: #0a2e6e; }
+        .company-website-row .arrow { font-size: 20px; color: #0a2e6e; cursor: pointer; margin-left: auto; } /* 这里是核心，auto把箭头推到最右 */
+
         .company-qr-wrap { display: flex; flex-direction: column; align-items: center; padding: 4px 0 10px 0; }
         .company-qr-box { width: 80px; height: 80px; background: #fff; border-radius: 12px; padding: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e8ecf2; display: flex; align-items: center; justify-content: center; }
         .company-qr-box img { width: 100%; height: 100%; object-fit: contain; }
         .company-qr-label { font-size: 11px; color: #7a8aaa; margin-top: 4px; letter-spacing: 0.5px; }
-        .company-address-phone { display: flex; justify-content: space-between; align-items: baseline; font-size: 16px; color: #2c3e6b; line-height: 1.8; padding: 0 22px; margin-top: 2px; }
-        .company-address-phone .addr { text-align: left; flex-shrink: 1; }
-        .company-address-phone .phone { text-align: right; flex-shrink: 0; margin-left: 16px; }
-        .company-address-phone .label { color: #7a8aaa; font-weight: 400; }
-        .company-post { font-size: 16px; color: #2c3e6b; line-height: 1.8; text-align: left; padding: 0 22px; margin-top: 2px; }
-        .company-post .label { color: #7a8aaa; font-weight: 400; }
+        
+        /* 地址电话邮编布局 */
+        .company-address-row { font-size: 16px; color: #2c3e6b; line-height: 1.8; text-align: left; padding: 0 22px; margin-top: 2px; }
+        .company-address-row .label { color: #7a8aaa; font-weight: 400; }
+        .company-contact-row { display: flex; align-items: baseline; font-size: 16px; color: #2c3e6b; line-height: 1.8; padding: 0 22px; margin-top: 2px; }
+        .company-contact-row .contact-col { flex: 1; text-align: left; }
+        .company-contact-row .contact-col .label { color: #7a8aaa; font-weight: 400; }
+
         .toast-tip { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(10,46,110,0.93); color: #fff; padding: 10px 26px; border-radius: 30px; font-size: 14px; font-weight: 500; box-shadow: 0 8px 28px rgba(0,0,0,0.28); z-index: 9999; backdrop-filter: blur(4px); max-width: 90%; text-align: center; transition: opacity 0.25s ease; letter-spacing: 0.3px; border: 1px solid rgba(255,255,255,0.12); font-family: "楷体","KaiTi",serif; }
         .share-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); z-index: 10000; justify-content: center; align-items: center; padding: 24px; animation: fadeIn 0.3s ease; }
         .share-modal-overlay.active { display: flex; }
@@ -90,7 +93,7 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { transform: translateY(30px) scale(0.96); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
 
-        /* 二维码弹窗专用样式（修复长按识别） */
+        /* 二维码弹窗专用样式（支持长按识别与保存） */
         #qrModalOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); z-index: 10000; justify-content: center; align-items: center; padding: 24px; }
         #qrModalOverlay.active { display: flex; }
         #qrModalOverlay .share-modal { text-align: center; }
@@ -100,67 +103,62 @@
 
         /* 响应式 */
         @media (max-width: 480px) {
-            .bg-image { min-height: 80vh; padding-bottom: 20px; }
+            .bg-image { min-height: 80vh; padding-bottom: 8px; }
             .bg-image::after { height: 100px; }
             .brand-icon { max-height: 120px; }
             .brand-icon img { max-height: 120px; }
             .info-area { margin: 50vh 16px 0 16px; padding: 18px 20px 16px 20px; border-radius: 16px; }
             .info-name { font-size: 32px; }
             .info-title, .info-dept, .info-contact, .info-company, .info-address { font-size: 15px; }
-            .color-fill { margin-top: 0; padding-top: 22px; padding-bottom: 16px; }
+            .color-fill { margin-top: 0; padding-top: 10px; padding-bottom: 16px; }
             .company-area { margin: 0 16px 14px 16px; border-radius: 16px; }
             .company-logo { padding: 10px 0 6px 0; }
             .company-logo img { max-height: 110px; }
             .company-desc { font-size: 15px; line-height: 1.9; padding: 0 18px; }
             .company-website-row { padding: 12px 18px 6px 18px; }
             .company-website-row .footer-website { font-size: 14px; }
-            .company-address-phone { font-size: 14px; padding: 0 18px; }
-            .company-post { font-size: 14px; padding: 0 18px; }
+            
+            .company-address-row { font-size: 14px; padding: 0 18px; }
+            .company-contact-row { font-size: 14px; padding: 0 18px; }
+            
             .company-qr-box { width: 68px; height: 68px; padding: 4px; }
             .company-qr-label { font-size: 10px; }
-            .actions { padding: 0 12px 6px 12px; gap: 8px; }
-            .actions .btn { font-size: 11px; padding: 6px 8px; min-width: 44px; }
-            .actions .btn .emoji { font-size: 13px; }
-            .share-row { padding: 0 12px 12px 12px; }
-            .share-row .btn-share { font-size: 11px; padding: 6px 18px; min-width: 80px; }
-            .share-row .btn-share .emoji { font-size: 13px; }
+            .actions { padding: 0 12px 10px 12px; gap: 8px; }
+            .actions .btn { font-size: 12px; padding: 9px 0; }
             .share-modal { padding: 20px 16px 20px 16px; border-radius: 22px; }
             .share-modal-title { font-size: 15px; }
             .share-card-preview .preview-body { padding: 10px 14px 12px 14px; }
             .share-card-preview .preview-title { font-size: 15px; }
             .share-card-preview .preview-desc { font-size: 12px; }
             .share-modal-actions .sm-btn { font-size: 13px; padding: 9px 0; }
-            .share-modal-actions .sm-btn .emoji { font-size: 15px; }
         }
         @media (max-width: 380px) {
-            .bg-image { min-height: 75vh; padding-bottom: 16px; }
+            .bg-image { min-height: 75vh; padding-bottom: 6px; }
             .bg-image::after { height: 80px; }
             .brand-icon { max-height: 100px; }
             .brand-icon img { max-height: 100px; }
             .info-area { margin: 45vh 12px 0 12px; padding: 16px 16px 14px 16px; border-radius: 14px; }
             .info-name { font-size: 28px; }
             .info-title, .info-dept, .info-contact, .info-company, .info-address { font-size: 14px; }
-            .color-fill { margin-top: 0; padding-top: 18px; padding-bottom: 12px; }
+            .color-fill { margin-top: 0; padding-top: 8px; padding-bottom: 12px; }
             .company-area { margin: 0 12px 12px 12px; border-radius: 14px; }
             .company-logo img { max-height: 90px; }
             .company-desc { font-size: 14px; line-height: 1.8; padding: 0 14px; }
             .company-website-row { padding: 10px 14px 4px 14px; }
             .company-website-row .footer-website { font-size: 13px; }
-            .company-address-phone { font-size: 13px; padding: 0 14px; }
-            .company-post { font-size: 13px; padding: 0 14px; }
+            
+            .company-address-row { font-size: 13px; padding: 0 14px; }
+            .company-contact-row { font-size: 13px; padding: 0 14px; }
+            
             .company-qr-box { width: 60px; height: 60px; padding: 4px; }
             .actions { gap: 6px; }
-            .actions .btn { font-size: 10px; padding: 5px 6px; min-width: 38px; }
-            .actions .btn .emoji { font-size: 12px; }
-            .share-row .btn-share { font-size: 10px; padding: 5px 14px; min-width: 70px; }
-            .share-row .btn-share .emoji { font-size: 12px; }
+            .actions .btn { font-size: 11px; padding: 8px 0; }
             .share-modal { padding: 16px 12px 16px 12px; border-radius: 18px; }
             .share-modal-title { font-size: 14px; }
             .share-card-preview .preview-body { padding: 8px 12px 10px 12px; }
             .share-card-preview .preview-title { font-size: 14px; }
             .share-card-preview .preview-desc { font-size: 11px; }
             .share-modal-actions .sm-btn { font-size: 12px; padding: 8px 0; }
-            .share-modal-actions .sm-btn .emoji { font-size: 14px; }
         }
     </style>
 </head>
@@ -186,33 +184,46 @@
             </div>
         </div>
         <div class="color-fill">
+            
+            <!-- 第一行：拨打电话、复制信息 -->
             <div class="actions">
-                <button class="btn btn-primary" id="saveBtn"><span class="emoji">💾</span> 保存至</button>
                 <button class="btn" id="callBtn"><span class="emoji">📞</span> 拨打电话</button>
                 <button class="btn" id="copyBtn"><span class="emoji">📋</span> 复制信息</button>
+            </div>
+
+            <!-- 第二行：二维码、分享 -->
+            <div class="actions">
                 <button class="btn" id="qrBtn"><span class="emoji">📱</span> 二维码</button>
+                <button class="btn" id="shareBtn"><span class="emoji">📤</span> 分享</button>
             </div>
-            <div class="share-row">
-                <button class="btn-share" id="shareBtn"><span class="emoji">📤</span> 分享</button>
-            </div>
+
             <div class="company-area">
                 <div class="company-logo"><img src="img/logo11.png" alt="宜春国控" /></div>
                 <div class="company-desc">
                     <span class="first-line">宜春市国有资本控股有限公司成立于2020年5月，是市属现代综合服务型国有企业，公司坚持以市场需求为导向，秉承"专注、可信、优质、高效"的服务宗旨，深耕三大业务板块："专业化检验检测服务"，业务涵盖建设工程检测、环境监测等专业技术服务。"全链条勘测设计服务"，业务涵盖工程建设项目咨询、勘察（含地灾及压覆矿产评估）设计、施工图设计审查、测绘地理信息、环境影响评价及环保验收等专业技术服务；"一站式人力资源服务"，业务涵盖就业咨询、招聘配置、人才引进、劳务派遣、劳务外包、职业培训、建筑领域三类人员、特种作业人员教育培训考试、网络技术，档案管理（涉密文件资料、涉密档案数字化加工）、广告制作等人才综合服务。</span>
                 </div>
+                
+                <!-- ===== 修改点：HTML结构调整，箭头独立靠右 ===== -->
                 <div class="company-website-row">
-                    <span class="footer-website" id="websiteLink">访问官网 <span class="arrow">›</span></span>
+                    <span class="footer-website" id="websiteLink">访问官网</span>
                     <span class="footer-copy-tip" id="copyTip">复制后到浏览器打开</span>
+                    <span class="arrow">›</span>
                 </div>
+
                 <div class="company-qr-wrap">
                     <div class="company-qr-box"><img src="img/qrcode.png" alt="二维码" /></div>
                     <div class="company-qr-label">扫码关注我们</div>
                 </div>
-                <div class="company-address-phone">
-                    <span class="addr"><span class="label">地址：</span>江西省宜春市经济技术开发区经发大道26号</span>
-                    <span class="phone"><span class="label">电话：</span>0795-3288195</span>
+                
+                <!-- 地址单独一行，电话和邮编平分一行并居左 -->
+                <div class="company-address-row">
+                    <span class="label">地址：</span>江西省宜春市经济技术开发区经发大道26号
                 </div>
-                <div class="company-post"><span class="label">邮编：</span>336600</div>
+                <div class="company-contact-row">
+                    <div class="contact-col"><span class="label">电话：</span>0795-3288195</div>
+                    <div class="contact-col"><span class="label">邮编：</span>336600</div>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -265,7 +276,6 @@
             var copyTip = document.getElementById('copyTip');
             var copyBtn = document.getElementById('copyBtn');
             var callBtn = document.getElementById('callBtn');
-            var saveBtn = document.getElementById('saveBtn');
             var qrBtn = document.getElementById('qrBtn');
             var shareBtn = document.getElementById('shareBtn');
             var modalOverlay = document.getElementById('shareModalOverlay');
@@ -310,12 +320,16 @@
                 document.body.removeChild(textarea);
             }
 
+            // 精确抓取电话和邮箱
             function getContactInfo() {
                 var name = document.querySelector('.info-name')?.textContent.trim() || '未知';
                 var title = document.querySelector('.info-title')?.textContent.trim() || '';
                 var dept = document.querySelector('.info-dept')?.textContent.trim() || '';
-                var phone = document.querySelector('.info-contact:nth-of-type(1)')?.textContent.trim() || '';
-                var email = document.querySelector('.info-contact:nth-of-type(2)')?.textContent.trim() || '';
+                
+                var contacts = document.querySelectorAll('.info-contact');
+                var phone = contacts.length > 0 ? contacts[0].textContent.trim() : '';
+                var email = contacts.length > 1 ? contacts[1].textContent.trim() : '';
+                
                 var company = document.querySelector('.info-company')?.textContent.trim() || '';
                 var addr = document.querySelector('.info-address')?.textContent.trim().replace('地址：', '') || '';
                 return { name, title, dept, phone, email, company, addr };
@@ -332,31 +346,6 @@
                 var phone = getContactInfo().phone || '17370565453';
                 if (confirm('即将拨打：' + phone)) window.location.href = 'tel:' + phone;
             });
-            if (saveBtn) saveBtn.addEventListener('click', function() {
-                var info = getContactInfo();
-                if (navigator.contacts && navigator.contacts.save) {
-                    navigator.contacts.save({ name: [info.name], tel: [info.phone], email: [info.email], organization: [info.company], title: [info.title], address: [{ street: info.addr }] })
-                        .then(function() { showToast('✅ 已保存到通讯录'); })
-                        .catch(function() { downloadVCard(info); });
-                } else { downloadVCard(info); }
-            });
-            function downloadVCard(info) {
-                var vcard = ['BEGIN:VCARD','VERSION:3.0','FN:'+info.name,'N:'+info.name+';;;','ORG:'+info.company,'TITLE:'+info.title+' ('+info.dept+')','TEL;TYPE=CELL:'+info.phone,'EMAIL:'+info.email,'ADR;TYPE=WORK:;;'+info.addr,'END:VCARD'].join('\r\n');
-                try {
-                    var blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-                    var url = URL.createObjectURL(blob);
-                    var link = document.createElement('a');
-                    link.href = url;
-                    link.download = info.name + '.vcf';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    URL.revokeObjectURL(url);
-                    showToast('✅ 通讯录文件已下载');
-                } catch (e) {
-                    copyText('姓名：'+info.name+'\n电话：'+info.phone+'\n邮箱：'+info.email+'\n公司：'+info.company, '⚠️ 已复制联系人信息，请手动保存');
-                }
-            }
 
             // ==================== 二维码功能 ====================
             if (qrBtn) qrBtn.addEventListener('click', function() {
