@@ -49,10 +49,9 @@
         .header p { font-size: 14px; color: #7a8aaa; margin-top: 10px; }
 
         .list-area { display: flex; flex-direction: column; }
-        
-        /* 核心修复：确保长按卡片时可以呼出微信原生“发送给朋友”菜单 */
         .card-item { 
-            display: block; 
+            display: flex; 
+            align-items: center;
             background: rgba(255,255,255,0.95); 
             border-radius: 16px; 
             padding: 18px 20px; 
@@ -62,26 +61,19 @@
             text-decoration: none; 
             margin-bottom: 35px; 
             backdrop-filter: blur(4px); 
-            position: relative; 
-            
-            /* 关键：允许长按弹出微信菜单 */
-            -webkit-touch-callout: default; 
-            user-select: none; 
-            -webkit-user-select: none;
         }
         .card-item:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(10,46,110,0.20); }
         .card-item:last-child { margin-bottom: 0; }
         
-        /* 内部布局 */
-        .card-item-content { display: flex; align-items: center; pointer-events: none; } 
-        
-        .card-item .avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #7593AF, #092145); color: #fff; display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; margin-right: 15px; flex-shrink: 0; pointer-events: none; }
-        .card-item .info { flex: 1; pointer-events: none; }
+        .card-item .avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #7593AF, #092145); color: #fff; display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; margin-right: 15px; flex-shrink: 0; }
+        .card-item .info { flex: 1; }
         .card-item .info .name { font-size: 18px; font-weight: 600; color: #0a2e6e; margin-bottom: 4px; }
         .card-item .info .job { font-size: 13px; color: #5a6e8a; }
-        .card-item .arrow { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 22px; color: #c8d2e0; pointer-events: none; }
+        .card-item .arrow { font-size: 22px; color: #c8d2e0; margin-left: 10px; }
         
-        .footer-tip { text-align: center; font-size: 12px; color: #5a6e8a; padding-top: 30px; }
+        /* 重要提示文字，告知用户正确的分享方式 */
+        .footer-tip { text-align: center; font-size: 13px; color: #5a6e8a; padding-top: 20px; line-height: 1.6; }
+        .footer-tip strong { color: #0a2e6e; }
         
         @media (max-width: 380px) {
             .card-item { margin-bottom: 25px; }
@@ -100,40 +92,35 @@
 
         <div class="list-area">
             <a href="yuhao.html" class="card-item">
-                <div class="card-item-content">
-                    <div class="avatar">余</div>
-                    <div class="info">
-                        <div class="name">余浩</div>
-                        <div class="job">综合管理部-部长</div>
-                    </div>
+                <div class="avatar">余</div>
+                <div class="info">
+                    <div class="name">余浩</div>
+                    <div class="job">综合管理部-部长</div>
                 </div>
                 <span class="arrow">›</span>
             </a>
-
-            <a href="zhangsan.html" class="card-item">
-                <div class="card-item-content">
-                    <div class="avatar">张</div>
-                    <div class="info">
-                        <div class="name">张三</div>
-                        <div class="job">人力资源部部长</div>
-                    </div>
+            <!-- 新增：李飞 -->
+            <a href="li.html" class="card-item">
+                <div class="avatar">李</div>
+                <div class="info">
+                    <div class="name">李飞</div>
+                    <div class="job">检测中心-副主任</div>
                 </div>
                 <span class="arrow">›</span>
             </a>
-            
-            <a href="lisi.html" class="card-item">
-                <div class="card-item-content">
-                    <div class="avatar">李</div>
-                    <div class="info">
-                        <div class="name">李四</div>
-                        <div class="job">检测中心主任</div>
-                    </div>
+             <a href="xin.html" class="card-item">
+                <div class="avatar">新</div>
+                <div class="info">
+                    <div class="name">李飞</div>
+                    <div class="job">检测中心-副主任</div>
                 </div>
                 <span class="arrow">›</span>
             </a>
         </div>
 
-        <div class="footer-tip">长按名片可直接分享给微信好友</div>
+        <div class="footer-tip">
+            <strong>分享提示：</strong>请点击名片进入详情页<br>点击右上角“…”即可发送给朋友
+        </div>
     </div>
 </body>
 </html>
